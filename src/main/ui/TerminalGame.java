@@ -133,39 +133,39 @@ public class TerminalGame {
     private void drawPacMan() {
         PacMan pacMan = game.getPacMan();
 
-        drawPosition(pacMan.getPos(), TextColor.ANSI.WHITE, 'C', true);
+        drawPosition(pacMan.getPos(), TextColor.ANSI.WHITE, 'C');
 
     }
 
     private void drawBlinky() {
         Ghost blinky = game.getBlinky();
 
-        drawPosition(blinky.getPos(), TextColor.ANSI.RED, 'n', true);
+        drawPosition(blinky.getPos(), TextColor.ANSI.RED, 'n');
 
     }
 
     private void drawInky() {
         Ghost blinky = game.getInky();
 
-        drawPosition(blinky.getPos(), TextColor.ANSI.BLUE, 'n', true);
+        drawPosition(blinky.getPos(), TextColor.ANSI.BLUE, 'n');
 
     }
 
     private void drawPinky() {
         Ghost blinky = game.getPinky();
 
-        drawPosition(blinky.getPos(), TextColor.ANSI.MAGENTA, 'n', true);
+        drawPosition(blinky.getPos(), TextColor.ANSI.MAGENTA, 'n');
 
     }
 
     private void drawClyde() {
         Ghost blinky = game.getClyde();
 
-        drawPosition(blinky.getPos(), TextColor.ANSI.YELLOW, 'n', true);
+        drawPosition(blinky.getPos(), TextColor.ANSI.YELLOW, 'n');
 
     }
 
-    private void drawPosition(Position pos, TextColor color, char c, boolean wide) {
+    private void drawPosition(Position pos, TextColor color, char c) {
         TextGraphics text = screen.newTextGraphics();
         text.setForegroundColor(color);
         text.putString(pos.getPosX() * 2, pos.getPosY() + 1, String.valueOf(c));
