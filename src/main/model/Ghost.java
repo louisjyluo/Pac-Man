@@ -5,9 +5,11 @@ import java.util.Random;
 
 public class Ghost {
     private Position body;
+    private Position lastBody;
 
     public Ghost() {
         this.body = new Position(20,7);
+        this.lastBody = new Position(20,7);
     }
 
     public void move() {
@@ -17,12 +19,16 @@ public class Ghost {
         }
         if (num.nextDouble() < 0.25) {
             body = new Position(body.getPosX(), body.getPosY() + 1);
+            lastBody = new Position(body.getPosX(), body.getPosY() - 1);
         } else if (num.nextDouble() >= 0.25 && num.nextDouble() < 0.5) {
             body = new Position(body.getPosX(), body.getPosY() - 1);
+            lastBody = new Position(body.getPosX(), body.getPosY() + 1);
         } else if (num.nextDouble() >= 0.5 && num.nextDouble() < 0.75) {
             body = new Position(body.getPosX() + 1, body.getPosY());
+            lastBody = new Position(body.getPosX() - 1, body.getPosY());
         } else {
             body = new Position(body.getPosX() - 1, body.getPosY());
+            lastBody = new Position(body.getPosX() + 1, body.getPosY());
         }
 
     }
@@ -47,7 +53,9 @@ public class Ghost {
         return false;
     }
 
-
+    public Position getLastBody() {
+        return lastBody;
+    }
 
     public Position getPos() {
         return body;

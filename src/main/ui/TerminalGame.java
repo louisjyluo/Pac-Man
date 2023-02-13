@@ -133,35 +133,35 @@ public class TerminalGame {
     private void drawPacMan() {
         PacMan pacMan = game.getPacMan();
 
-        drawPosition(pacMan.getPos(), TextColor.ANSI.WHITE, '\u2588', true);
+        drawPosition(pacMan.getPos(), TextColor.ANSI.WHITE, 'C', true);
 
     }
 
     private void drawBlinky() {
         Ghost blinky = game.getBlinky();
 
-        drawPosition(blinky.getPos(), TextColor.ANSI.RED, '\u2588', true);
+        drawPosition(blinky.getPos(), TextColor.ANSI.RED, 'n', true);
 
     }
 
     private void drawInky() {
         Ghost blinky = game.getInky();
 
-        drawPosition(blinky.getPos(), TextColor.ANSI.BLUE, '\u2588', true);
+        drawPosition(blinky.getPos(), TextColor.ANSI.BLUE, 'n', true);
 
     }
 
     private void drawPinky() {
         Ghost blinky = game.getPinky();
 
-        drawPosition(blinky.getPos(), TextColor.ANSI.MAGENTA, '\u2588', true);
+        drawPosition(blinky.getPos(), TextColor.ANSI.MAGENTA, 'n', true);
 
     }
 
     private void drawClyde() {
         Ghost blinky = game.getClyde();
 
-        drawPosition(blinky.getPos(), TextColor.ANSI.YELLOW, '\u2588', true);
+        drawPosition(blinky.getPos(), TextColor.ANSI.YELLOW, 'n', true);
 
     }
 

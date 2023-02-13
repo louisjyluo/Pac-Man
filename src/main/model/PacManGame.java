@@ -16,7 +16,7 @@ public class PacManGame {
     private int score = 0;
     private int maxX;
     private int maxY;
-    private int tickPerSec = 5;
+    private int tickPerSec = 3;
 
     public PacManGame(int maxX, int maxY) {
         this.maxX = maxX;
@@ -55,23 +55,63 @@ public class PacManGame {
     }
 
     public boolean hasCollidedWithBlinky() {
-        return (blinky.getPos().getPosX() == pacMan.getPos().getPosX()
-                && blinky.getPos().getPosY() == pacMan.getPos().getPosY());
+        int blinkyPosX = blinky.getPos().getPosX();
+        int blinkyLastPosX = blinky.getLastBody().getPosX();
+        int pacManPosX = pacMan.getPos().getPosX();
+        int pacManLastPosX = pacMan.getLastBody().getPosX();
+        int blinkyPosY = blinky.getPos().getPosY();
+        int blinkyLastPosY = blinky.getLastBody().getPosY();
+        int pacManPosY = pacMan.getPos().getPosY();
+        int pacManLastPosY = pacMan.getLastBody().getPosY();
+        return ((blinkyPosX == pacManPosX && blinkyPosY == pacManPosY)
+                || (blinkyPosX == pacManLastPosX &&  blinkyPosY == pacManLastPosY)
+                || (blinkyLastPosX == pacManPosX && blinkyLastPosY == pacManLastPosY)
+                || (blinkyLastPosY == pacManPosY && blinkyLastPosX == pacManLastPosX));
     }
 
     public boolean hasCollidedWithPinky() {
-        return (pinky.getPos().getPosX() == pacMan.getPos().getPosX()
-                && pinky.getPos().getPosY() == pacMan.getPos().getPosY());
+        int pinkyPosX = pinky.getPos().getPosX();
+        int pinkyLastPosX = pinky.getLastBody().getPosX();
+        int pacManPosX = pacMan.getPos().getPosX();
+        int pacManLastPosX = pacMan.getLastBody().getPosX();
+        int pinkyPosY = pinky.getPos().getPosY();
+        int pinkyLastPosY = pinky.getLastBody().getPosY();
+        int pacManPosY = pacMan.getPos().getPosY();
+        int pacManLastPosY = pacMan.getLastBody().getPosY();
+        return ((pinkyPosX == pacManPosX && pinkyPosY == pacManPosY)
+                || (pinkyPosX == pacManLastPosX &&  pinkyPosY == pacManLastPosY)
+                || (pinkyLastPosX == pacManPosX && pinkyLastPosY == pacManLastPosY)
+                || (pinkyLastPosY == pacManPosY && pinkyLastPosX == pacManLastPosX));
     }
 
     public boolean hasCollidedWithInky() {
-        return (inky.getPos().getPosX() == pacMan.getPos().getPosX()
-                && inky.getPos().getPosY() == pacMan.getPos().getPosY());
+        int inkyPosX = inky.getPos().getPosX();
+        int inkyLastPosX = inky.getLastBody().getPosX();
+        int pacManPosX = pacMan.getPos().getPosX();
+        int pacManLastPosX = pacMan.getLastBody().getPosX();
+        int inkyPosY = inky.getPos().getPosY();
+        int inkyLastPosY = inky.getLastBody().getPosY();
+        int pacManPosY = pacMan.getPos().getPosY();
+        int pacManLastPosY = pacMan.getLastBody().getPosY();
+        return ((inkyPosX == pacManPosX && inkyPosY == pacManPosY)
+                || (inkyPosX == pacManLastPosX && inkyPosY == pacManLastPosY)
+                || (inkyLastPosX == pacManPosX && inkyLastPosY == pacManLastPosY)
+                || (inkyLastPosY == pacManPosY && inkyLastPosX == pacManLastPosX));
     }
 
     public boolean hasCollidedWithClyde() {
-        return (clyde.getPos().getPosX() == pacMan.getPos().getPosX()
-                && clyde.getPos().getPosY() == pacMan.getPos().getPosY());
+        int clydePosX = clyde.getPos().getPosX();
+        int clydeLastPosX = blinky.getLastBody().getPosX();
+        int pacManPosX = pacMan.getPos().getPosX();
+        int pacManLastPosX = pacMan.getLastBody().getPosX();
+        int clydePosY = clyde.getPos().getPosY();
+        int clydeLastPosY = clyde.getLastBody().getPosY();
+        int pacManPosY = pacMan.getPos().getPosY();
+        int pacManLastPosY = pacMan.getLastBody().getPosY();
+        return ((clydePosX == pacManPosX && clydePosY == pacManPosY)
+                || (clydePosX == pacManLastPosX &&  clydePosY == pacManLastPosY)
+                || (clydeLastPosX == pacManPosX && clydeLastPosY == pacManLastPosY)
+                || (clydeLastPosY == pacManPosY && clydeLastPosX == pacManLastPosX));
     }
 
     public int increaseScore() {
