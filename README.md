@@ -25,6 +25,10 @@ my first true solo project designed from scratch.
 
 ## User Stories
 - As a user, I want a map that features Pac-Man
+- As a user, Pac-Man needs to be able to collide with the walls
+- As a user, touching a ghost will kill me
+- As a user, I want to be able to collect pellets
+- As a user, these pellets need to give me points
 - As a user, I want to be able to move as Pac-Man
 - As a user, I want ghosts chasing after me
 - As a user, I want items on the map that will power up Pac-Man
@@ -32,4 +36,5 @@ my first true solo project designed from scratch.
 - As a user, I want my score added to the scoreboard
 - As a user, I want multiple lives with Pac-Man
 - As a user, I want the difficulty to increase as the game progresses.
+- As a user, the game will rerun once all the pellets are gone.
  

@@ -11,28 +11,32 @@ import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.ResizeListener;
+import com.googlecode.lanterna.terminal.TerminalResizeListener;
+import com.googlecode.lanterna.terminal.swing.SwingTerminal;
 import model.*;
-
-import java.awt.*;
 import java.io.IOException;
 
 public class TerminalGame {
     private PacManGame game;
-    private Screen screen;
+    private TerminalScreen screen;
     private WindowBasedTextGUI endGui;
-
-
+    private SwingTerminal terminal;
 
     public void start() throws IOException, InterruptedException {
         screen = new DefaultTerminalFactory().createScreen();
         screen.startScreen();
-
-        TerminalSize terminalSize = screen.getTerminalSize();
-        int maxX = terminalSize.getColumns() / 2;
-        int maxY = terminalSize.getRows() - 1;
+        int maxX = 28;
+        int maxY = 37;
+        screen.doResizeIfNecessary();
         game = new PacManGame(maxX, maxY);
         beginTicks();
+    }
+
+    public PacManGame getGame() {
+        return game;
     }
 
     private void beginTicks() throws IOException, InterruptedException {
@@ -48,13 +52,9 @@ public class TerminalGame {
         handleUserInput();
 
         game.tick();
-
-        screen.setCursorPosition(new TerminalPosition(0, 0));
         screen.clear();
         render();
         screen.refresh();
-
-        screen.setCursorPosition(new TerminalPosition(screen.getTerminalSize().getColumns() - 1, 0));
     }
 
     private void handleUserInput() throws IOException {
@@ -100,8 +100,9 @@ public class TerminalGame {
 
             return;
         }
-
         drawScore();
+        drawMap();
+        drawPellets();
         drawPacMan();
         drawBlinky();
         drawInky();
@@ -114,7 +115,7 @@ public class TerminalGame {
 
         new MessageDialogBuilder()
                 .setTitle("Game over!")
-                .setText("You finished with a score of " + game.getScore() + "!")
+                .setText("You finished with a score of " + game.getPellets().getScore() + "!")
                 .addButton(MessageDialogButton.Close)
                 .build()
                 .showDialog(endGui);
@@ -127,7 +128,7 @@ public class TerminalGame {
 
         text = screen.newTextGraphics();
         text.setForegroundColor(TextColor.ANSI.WHITE);
-        text.putString(8, 0, String.valueOf(game.getScore()));
+        text.putString(8, 0, String.valueOf(game.getPellets().getScore()));
     }
 
     private void drawPacMan() {
@@ -142,6 +143,12 @@ public class TerminalGame {
 
         drawPosition(blinky.getPos(), TextColor.ANSI.RED, 'n');
 
+    }
+
+    private void drawMap() {
+        for (int i = 0; i < game.getMap().makeMap().size(); i++) {
+            drawPosition(game.getMap().makeMap().get(i), TextColor.ANSI.CYAN, 'H');
+        }
     }
 
     private void drawInky() {
@@ -162,6 +169,13 @@ public class TerminalGame {
         Ghost blinky = game.getClyde();
 
         drawPosition(blinky.getPos(), TextColor.ANSI.YELLOW, 'n');
+
+    }
+
+    private void drawPellets() {
+        for (int i = 0; i < game.getPellets().getPellet().length; i++) {
+            drawPosition(game.getPellets().makePellets().get(i), TextColor.ANSI.WHITE, '•');
+        }
 
     }
 

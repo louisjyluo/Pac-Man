@@ -2,6 +2,7 @@ package model;
 
 import model.Ghost;
 import model.PacMan;
+import model.Map;
 
 import java.util.ArrayList;
 
@@ -12,11 +13,11 @@ public class PacManGame {
     private Ghost clyde = new Ghost();
     private PacMan pacMan = new PacMan();
     private Pellets pellets = new Pellets();
+    private Map map = new Map();
     private Boolean ended = false;
-    private int score = 0;
     private int maxX;
     private int maxY;
-    private int tickPerSec = 3;
+    private int tickPerSec = 4;
 
     public PacManGame(int maxX, int maxY) {
         this.maxX = maxX;
@@ -24,35 +25,42 @@ public class PacManGame {
     }
 
     public void tick() {
-        pacMan.move();
         blinky.move();
         pinky.move();
         inky.move();
         clyde.move();
-        increaseScore();
-        if (hasCollidedWithBlinky() || hasCollidedWithClyde()
-                || hasCollidedWithInky() || hasCollidedWithPinky() || checkBoundaries()) {
-            ended = true;
-            return;
+        if (isPellet()) {
+            pellets.eatPellet(pacMan.getPos().getPosX(), pacMan.getPos().getPosY());
         }
+        pacMan.move();
+        if (hasCollidedWithBlinky() || hasCollidedWithClyde()
+                || hasCollidedWithInky() || hasCollidedWithPinky() || noMorePellets()) {
+            ended = true;
+        }
+
+
     }
 
-
-    public boolean checkBoundaries() {
-        if (pacMan.getPos().getPosX() == maxX) {
-            return true;
-        }
-        if (pacMan.getPos().getPosY() == maxY) {
-            return true;
-        }
-        if (pacMan.getPos().getPosX() == 0) {
-            return true;
-        }
-        if (pacMan.getPos().getPosY() == 0) {
-            return true;
+    public boolean isPellet() {
+        for (int i = 0; i < pellets.getPellet().length; i++) {
+            if (pacMan.getPos().getPosX() == pellets.makePellets().get(i).getPosX()
+                    && pacMan.getPos().getPosY() == pellets.makePellets().get(i).getPosY()) {
+                return true;
+            }
         }
         return false;
     }
+
+    public boolean noMorePellets() {
+        for (int i = 0; i < pellets.getPellet().length; i++) {
+            if (!(pellets.getMap().get(i).getPosX() == 32
+                    && pellets.getMap().get(i).getPosY() == 32)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public boolean hasCollidedWithBlinky() {
         int blinkyPosX = blinky.getPos().getPosX();
@@ -114,13 +122,6 @@ public class PacManGame {
                 || (clydeLastPosY == pacManPosY && clydeLastPosX == pacManLastPosX));
     }
 
-    public int increaseScore() {
-        if (pacMan.getPos().equals(pellets.getPellet())) {
-            int score = pellets.getScore();
-            return score += pellets.getScore() + 20;
-        }
-        return pellets.getScore();
-    }
 
     public Ghost getBlinky() {
         return blinky;
@@ -150,12 +151,17 @@ public class PacManGame {
         return pacMan;
     }
 
-    public int getScore() {
-        return score;
+    public Map getMap() {
+        return map;
+    }
+
+    public Pellets getPellets() {
+        return pellets;
     }
 
 
-    //Pacman class - represents PacMan, have move() method, wall collision, direction, and remove body.
+
+    //Pacman class - represents PacMan, have move() method, wall collision, direction.
     //Pacman direction - represents how PacMan should move,
     //Pacman position - represents a position in the game space for PacMan
     //Ghost class - ghosts move randomly around, leave it up to chance during turns,
