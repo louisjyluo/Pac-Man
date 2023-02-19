@@ -15,6 +15,8 @@ public class Ghost {
         num = new Random();
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public void move() {
         if (num.nextDouble() < 0.25) {
             moveDown();
@@ -28,6 +30,8 @@ public class Ghost {
 
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public void moveUp() {
         if (cantMoveUp()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -37,6 +41,8 @@ public class Ghost {
         }
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public void moveDown() {
         if (cantMoveDown()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -46,6 +52,8 @@ public class Ghost {
         }
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public void moveLeft() {
         if (cantMoveLeft()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -55,6 +63,8 @@ public class Ghost {
         }
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public void moveRight() {
         if (cantMoveRight()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -64,6 +74,8 @@ public class Ghost {
         }
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public boolean cantMoveDown() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosY() + 1 == walls.makeMap().get(i).getPosY()
@@ -74,6 +86,8 @@ public class Ghost {
         return false;
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public boolean cantMoveLeft() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosX() - 1 == walls.makeMap().get(i).getPosX()
@@ -84,6 +98,8 @@ public class Ghost {
         return false;
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public boolean cantMoveRight() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosX() + 1 == walls.makeMap().get(i).getPosX()
@@ -94,6 +110,8 @@ public class Ghost {
         return false;
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public boolean cantMoveUp() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosY() - 1 == walls.makeMap().get(i).getPosY()

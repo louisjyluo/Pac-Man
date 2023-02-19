@@ -23,11 +23,8 @@ public class Pellets {
         map = new ArrayList<>();
     }
 
-
-    public int getScore() {
-        return score;
-    }
-
+    //MODIFIES:
+    //EFFECTS:
     public ArrayList<Position> makePellets() {
         for (int i = 0; i < pellets.length; i++) {
             Position pixel = new Position(pellets[i][1], pellets[i][0]);
@@ -36,10 +33,14 @@ public class Pellets {
         return map;
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public int increaseScore() {
         return score += 20;
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public void eatPellet(int posX, int posY) {
         for (int i = 0;  i < map.size(); i++) {
             if (map.get(i).getPosX() == posX
@@ -58,6 +59,10 @@ public class Pellets {
 
     public ArrayList<Position> getMap() {
         return map;
+    }
+
+    public int getScore() {
+        return score;
     }
 
 }

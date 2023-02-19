@@ -15,6 +15,8 @@ public enum Direction {
         this.dy = dy;
     }
 
+    //MODIFIES:
+    //EFFECTS:
     public Position move(Position pos) {
         return new Position(
                 pos.getPosX() + dx,

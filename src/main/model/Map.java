@@ -18,6 +18,8 @@ public class Map {
     };
 
 
+    //MODIFIES:
+    //EFFECTS:
     public ArrayList<Position> makeMap() {
         ArrayList<Position> map = new ArrayList<>();
         for (int i = 0; i < walls.length; i++) {

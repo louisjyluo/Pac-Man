@@ -25,27 +25,28 @@ public class PacManTest {
 
     @Test
     void randomMoveTest() {
+        pacMan.setDirection(Direction.DOWN);
         if (pacMan.getDir() == Direction.DOWN) {
             pacMan.move();
             assertEquals(10,pacMan.getPos().getPosX());
             assertEquals(11,pacMan.getPos().getPosY());
         }
 
-
+        pacMan.setDirection(Direction.UP);
         if (pacMan.getDir() == Direction.UP) {
             pacMan.move();
             assertEquals(10,pacMan.getPos().getPosX());
             assertEquals(10,pacMan.getPos().getPosY());
         }
 
-
+        pacMan.setDirection(Direction.RIGHT);
         if (pacMan.getDir() == Direction.RIGHT) {
             pacMan.move();
             assertEquals(11,pacMan.getPos().getPosX());
             assertEquals(10,pacMan.getPos().getPosY());
         }
 
-
+        pacMan.setDirection(Direction.LEFT);
         if (pacMan.getDir() == Direction.LEFT) {
             pacMan.move();
             assertEquals(10,pacMan.getPos().getPosX());
