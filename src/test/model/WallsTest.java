@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MapTest {
-    private Map map;
+public class WallsTest {
+    private Walls map;
 
     @BeforeEach
     void runBefore() {
-        map = new Map();
+        map = new Walls();
     }
 
     @Test

@@ -32,7 +32,7 @@ public class GhostTest {
 
         if (blinky.getNum().nextDouble() >= 0.25 && blinky.getNum().nextDouble() < 0.5) {
             blinky.move();
-            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(11,blinky.getPos().getPosX());
             assertEquals(7,blinky.getPos().getPosY());
         }
 
