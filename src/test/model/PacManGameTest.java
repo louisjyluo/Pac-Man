@@ -28,13 +28,14 @@ class PacManGameTest {
         assertTrue(game.isPellet());
         game.tick();
         assertFalse(game.isPellet());
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 18; j++) {
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 20; j++) {
                 game.getPellets().eatPellet(i,j);
             }
         }
         assertTrue(game.noMorePellets());
         if(game.noMorePellets()) {
+            game.tick();
             assertTrue(game.isEnded());
         }
 

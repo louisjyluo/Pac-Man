@@ -80,7 +80,7 @@ public class PacManGame {
         int pacManLastPosY = pacMan.getLastBody().getPosY();
         return ((blinkyPosX == pacManPosX && blinkyPosY == pacManPosY)
                 || (blinkyPosX == pacManLastPosX &&  blinkyPosY == pacManLastPosY)
-                || (blinkyLastPosX == pacManPosX && blinkyLastPosY == pacManLastPosY));
+                || (blinkyLastPosX == pacManPosX && blinkyLastPosY == pacManPosY));
     }
 
     //MODIFIES: this
@@ -96,7 +96,7 @@ public class PacManGame {
         int pacManLastPosY = pacMan.getLastBody().getPosY();
         return ((pinkyPosX == pacManPosX && pinkyPosY == pacManPosY)
                 || (pinkyPosX == pacManLastPosX &&  pinkyPosY == pacManLastPosY)
-                || (pinkyLastPosX == pacManPosX && pinkyLastPosY == pacManLastPosY));
+                || (pinkyLastPosX == pacManPosX && pinkyLastPosY == pacManPosY));
     }
 
     //MODIFIES: this
@@ -112,14 +112,14 @@ public class PacManGame {
         int pacManLastPosY = pacMan.getLastBody().getPosY();
         return ((inkyPosX == pacManPosX && inkyPosY == pacManPosY)
                 || (inkyPosX == pacManLastPosX && inkyPosY == pacManLastPosY)
-                || (inkyLastPosX == pacManPosX && inkyLastPosY == pacManLastPosY));
+                || (inkyLastPosX == pacManPosX && inkyLastPosY == pacManPosY));
     }
 
     //MODIFIES: this
     //EFFECTS: return true if Pac man has collided with Clyde.
     public boolean hasCollidedWithClyde() {
         int clydePosX = clyde.getPos().getPosX();
-        int clydeLastPosX = blinky.getLastBody().getPosX();
+        int clydeLastPosX = clyde.getLastBody().getPosX();
         int pacManPosX = pacMan.getPos().getPosX();
         int pacManLastPosX = pacMan.getLastBody().getPosX();
         int clydePosY = clyde.getPos().getPosY();
@@ -128,7 +128,7 @@ public class PacManGame {
         int pacManLastPosY = pacMan.getLastBody().getPosY();
         return ((clydePosX == pacManPosX && clydePosY == pacManPosY)
                 || (clydePosX == pacManLastPosX &&  clydePosY == pacManLastPosY)
-                || (clydeLastPosX == pacManPosX && clydeLastPosY == pacManLastPosY));
+                || (clydeLastPosX == pacManPosX && clydeLastPosY == pacManPosY));
     }
 
 
