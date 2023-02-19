@@ -19,6 +19,39 @@ public class PacManTest {
         assertEquals(10,pacMan.getPos().getPosY());
         assertEquals(10,pacMan.getLastBody().getPosX());
         assertEquals(10,pacMan.getLastBody().getPosY());
+        pacMan.setDirection(Direction.RIGHT);
+        assertEquals(Direction.RIGHT, pacMan.getDir());
+    }
+
+    @Test
+    void randomMoveTest() {
+        if (pacMan.getDir() == Direction.DOWN) {
+            pacMan.move();
+            assertEquals(10,pacMan.getPos().getPosX());
+            assertEquals(11,pacMan.getPos().getPosY());
+        }
+
+
+        if (pacMan.getDir() == Direction.UP) {
+            pacMan.move();
+            assertEquals(10,pacMan.getPos().getPosX());
+            assertEquals(10,pacMan.getPos().getPosY());
+        }
+
+
+        if (pacMan.getDir() == Direction.RIGHT) {
+            pacMan.move();
+            assertEquals(11,pacMan.getPos().getPosX());
+            assertEquals(10,pacMan.getPos().getPosY());
+        }
+
+
+        if (pacMan.getDir() == Direction.LEFT) {
+            pacMan.move();
+            assertEquals(10,pacMan.getPos().getPosX());
+            assertEquals(10,pacMan.getPos().getPosY());
+        }
+
     }
 
     @Test
@@ -44,26 +77,33 @@ public class PacManTest {
     // Pacman shouldn't move if there is a wall in the way.
     void moveAtWallTest() {
 
-        assertTrue(pacMan.cantMoveUp());
+        while(!pacMan.cantMoveUp()) {
+            pacMan.moveUp();
+        }
         pacMan.moveUp();
         assertEquals(10,pacMan.getPos().getPosX());
         assertEquals(10,pacMan.getPos().getPosY());
 
+        while(!pacMan.cantMoveDown()) {
+            pacMan.moveDown();
+        }
         pacMan.moveDown();
         assertEquals(10,pacMan.getPos().getPosX());
-        assertEquals(11,pacMan.getPos().getPosY());
+        assertEquals(12,pacMan.getPos().getPosY());
 
         while(!pacMan.cantMoveRight()) {
             pacMan.moveRight();
         }
-        assertEquals(10,pacMan.getPos().getPosX());
-        assertEquals(11,pacMan.getPos().getPosY());
+        pacMan.moveRight();
+        assertEquals(11,pacMan.getPos().getPosX());
+        assertEquals(12,pacMan.getPos().getPosY());
 
         while(!pacMan.cantMoveLeft()) {
             pacMan.moveLeft();
         }
-        assertEquals(10,pacMan.getPos().getPosX());
-        assertEquals(11,pacMan.getPos().getPosY());
+        pacMan.moveLeft();
+        assertEquals(9,pacMan.getPos().getPosX());
+        assertEquals(12,pacMan.getPos().getPosY());
     }
 
 

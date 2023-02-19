@@ -21,11 +21,4 @@ public enum Direction {
                 pos.getPosY() + dy);
     }
 
-    public int getDx() {
-        return dx;
-    }
-
-    public int getDY() {
-        return dy;
-    }
 }

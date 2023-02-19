@@ -128,6 +128,10 @@ public class PacMan {
         this.dir = direction;
     }
 
+    public Direction getDir() {
+        return dir;
+    }
+
     public Position getLastBody() {
         return lastBody;
     }

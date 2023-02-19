@@ -28,12 +28,12 @@ public class PelletTest {
 
     @Test
     void increaseScoreTest(){
-        int score = pellets.increaseScore();
-        assertEquals(20,score);
+        pellets.increaseScore();
+        assertEquals(20,pellets.getScore());
         pellets.increaseScore();
         pellets.increaseScore();
-        score = pellets.increaseScore();
-        assertEquals(80,score);
+        pellets.increaseScore();
+        assertEquals(80,pellets.getScore());
 
     }
 

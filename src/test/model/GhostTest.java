@@ -22,6 +22,37 @@ public class GhostTest {
     }
 
     @Test
+    void randomMoveTest() {
+        if (blinky.getNum().nextDouble() < 0.25) {
+            blinky.move();
+            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(8,blinky.getPos().getPosY());
+        }
+
+
+        if (blinky.getNum().nextDouble() >= 0.25 && blinky.getNum().nextDouble() < 0.5) {
+            blinky.move();
+            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+
+
+        if (blinky.getNum().nextDouble() >= 0.5 && blinky.getNum().nextDouble() < 0.75) {
+            blinky.move();
+            assertEquals(11,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+
+
+        if (blinky.getNum().nextDouble() >= 0.75) {
+            blinky.move();
+            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+
+    }
+
+    @Test
     void moveTest() {
         blinky.moveDown();
         assertEquals(10,blinky.getPos().getPosX());
@@ -42,24 +73,28 @@ public class GhostTest {
         while(!blinky.cantMoveLeft()) {
             blinky.moveLeft();
         }
+        blinky.moveLeft();
         assertEquals(9,blinky.getPos().getPosX());
         assertEquals(7,blinky.getPos().getPosY());
 
         while(!blinky.cantMoveRight()) {
             blinky.moveRight();
         }
+        blinky.moveRight();
         assertEquals(11,blinky.getPos().getPosX());
         assertEquals(7,blinky.getPos().getPosY());
 
         while(!blinky.cantMoveUp()) {
             blinky.moveUp();
         }
+        blinky.moveUp();
         assertEquals(11,blinky.getPos().getPosX());
         assertEquals(7,blinky.getPos().getPosY());
 
         while(!blinky.cantMoveDown()) {
             blinky.moveDown();
         }
+        blinky.moveDown();
         assertEquals(11,blinky.getPos().getPosX());
         assertEquals(8,blinky.getPos().getPosY());
 

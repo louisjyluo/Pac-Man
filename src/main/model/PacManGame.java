@@ -30,10 +30,10 @@ public class PacManGame {
         pinky.move();
         inky.move();
         clyde.move();
+        pacMan.move();
         if (isPellet()) {
             pellets.eatPellet(pacMan.getPos().getPosX(), pacMan.getPos().getPosY());
         }
-        pacMan.move();
         if (hasCollidedWithBlinky() || hasCollidedWithClyde()
                 || hasCollidedWithInky() || hasCollidedWithPinky() || noMorePellets()) {
             ended = true;

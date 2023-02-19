@@ -6,15 +6,16 @@ public class Ghost {
     private Position body;
     private Position lastBody;
     private Map walls;
+    private Random num;
 
     public Ghost() {
         this.body = new Position(10,7);
         this.lastBody = new Position(10,7);
         walls = new Map();
+        num = new Random();
     }
 
     public void move() {
-        Random num = new Random();
         if (num.nextDouble() < 0.25) {
             moveDown();
         } else if (num.nextDouble() >= 0.25 && num.nextDouble() < 0.5) {
@@ -117,6 +118,10 @@ public class Ghost {
 
     public void setLastBody(int x, int y) {
         this.lastBody = new Position(x,y);
+    }
+
+    public Random getNum() {
+        return num;
     }
 
 }
