@@ -26,7 +26,7 @@ public class PacMan {
             moveLeft();
         } else if (dir == Direction.UP) {
             moveUp();
-        } else if (dir == Direction.DOWN) {
+        } else {
             moveDown();
         }
     }

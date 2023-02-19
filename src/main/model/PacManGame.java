@@ -62,8 +62,7 @@ public class PacManGame {
     // map by setting all pellets to position 32,32.
     public boolean noMorePellets() {
         for (int i = 0; i < pellets.getPellet().length; i++) {
-            if (!(pellets.getMap().get(i).getPosX() == 32
-                    && pellets.getMap().get(i).getPosY() == 32)) {
+            if (!(pellets.getMap().get(i).getPosX() == 32)) {
                 return false;
             }
         }

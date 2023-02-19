@@ -53,29 +53,29 @@ class PacManGameTest {
 
     @Test
     void collisionWithBlinkyTest() {
-        blinky.setPos(3,3);
-        pacMan.setBody(3,3);
-        blinky.setLastBody(3,2);
-        pacMan.setLastBody(4,3);
+        blinky.setPos(5,5);
+        pacMan.setBody(5,5);
+        blinky.setLastBody(5,4);
+        pacMan.setLastBody(6,5);
         assertTrue(game.hasCollidedWithBlinky());
         if(game.hasCollidedWithBlinky()) {
             game.tick();
             assertTrue(game.isEnded());
         }
-        blinky.setPos(3,3);
-        pacMan.setBody(3,2);
-        blinky.setLastBody(4,3);
-        pacMan.setLastBody(3,3);
+        blinky.setPos(5,5);
+        pacMan.setBody(5,4);
+        blinky.setLastBody(6,5);
+        pacMan.setLastBody(5,5);
         assertTrue(game.hasCollidedWithBlinky());
-        blinky.setPos(3,4);
-        pacMan.setBody(3,3);
-        blinky.setLastBody(3,3);
-        pacMan.setLastBody(2,3);
+        blinky.setPos(5,6);
+        pacMan.setBody(5,5);
+        blinky.setLastBody(5,5);
+        pacMan.setLastBody(4,5);
         assertTrue(game.hasCollidedWithBlinky());
-        blinky.setPos(7,5);
-        pacMan.setBody(3,2);
-        blinky.setLastBody(6,1);
-        pacMan.setLastBody(2,7);
+        blinky.setPos(9,7);
+        pacMan.setBody(5,4);
+        blinky.setLastBody(8,7);
+        pacMan.setLastBody(4,4);
         assertFalse(game.hasCollidedWithBlinky());
     }
 
@@ -102,64 +102,64 @@ class PacManGameTest {
         assertTrue(game.hasCollidedWithPinky());
         pinky.setPos(7,5);
         pacMan.setBody(3,2);
-        pinky.setLastBody(6,1);
-        pacMan.setLastBody(2,7);
+        pinky.setLastBody(6,5);
+        pacMan.setLastBody(2,2);
         assertFalse(game.hasCollidedWithPinky());
     }
 
     @Test
     void collisionWithInkyTest() {
-        inky.setPos(3,3);
-        pacMan.setBody(3,3);
-        inky.setLastBody(3,2);
-        pacMan.setLastBody(4,3);
+        inky.setPos(13,13);
+        pacMan.setBody(13,13);
+        inky.setLastBody(13,12);
+        pacMan.setLastBody(14,13);
         assertTrue(game.hasCollidedWithInky());
         if(game.hasCollidedWithInky()) {
             game.tick();
             assertTrue(game.isEnded());
         }
-        inky.setPos(3,3);
-        pacMan.setBody(3,2);
-        inky.setLastBody(4,3);
-        pacMan.setLastBody(3,3);
+        inky.setPos(13,13);
+        pacMan.setBody(13,12);
+        inky.setLastBody(14,13);
+        pacMan.setLastBody(13,13);
         assertTrue(game.hasCollidedWithInky());
-        inky.setPos(3,4);
-        pacMan.setBody(3,3);
-        inky.setLastBody(3,3);
-        pacMan.setLastBody(2,3);
+        inky.setPos(13,14);
+        pacMan.setBody(13,13);
+        inky.setLastBody(13,13);
+        pacMan.setLastBody(12,13);
         assertTrue(game.hasCollidedWithInky());
-        inky.setPos(7,5);
-        pacMan.setBody(3,2);
-        inky.setLastBody(6,1);
-        pacMan.setLastBody(2,7);
+        inky.setPos(17,15);
+        pacMan.setBody(13,12);
+        inky.setLastBody(16,15);
+        pacMan.setLastBody(12,12);
         assertFalse(game.hasCollidedWithInky());
     }
 
     @Test
     void collisionWithClydeTest() {
-        clyde.setPos(3,3);
-        pacMan.setBody(3,3);
-        clyde.setLastBody(3,2);
-        pacMan.setLastBody(4,3);
+        clyde.setPos(11,11);
+        pacMan.setBody(11,11);
+        clyde.setLastBody(11,10);
+        pacMan.setLastBody(12,11);
         assertTrue(game.hasCollidedWithClyde());
         if(game.hasCollidedWithClyde()) {
             game.tick();
             assertTrue(game.isEnded());
         }
-        clyde.setPos(3,3);
-        pacMan.setBody(3,2);
-        clyde.setLastBody(4,3);
-        pacMan.setLastBody(3,3);
+        clyde.setPos(11,11);
+        pacMan.setBody(11,10);
+        clyde.setLastBody(12,11);
+        pacMan.setLastBody(11,11);
         assertTrue(game.hasCollidedWithClyde());
-        clyde.setPos(3,4);
-        pacMan.setBody(3,3);
-        clyde.setLastBody(3,3);
-        pacMan.setLastBody(2,3);
+        clyde.setPos(11,12);
+        pacMan.setBody(11,11);
+        clyde.setLastBody(11,11);
+        pacMan.setLastBody(10,11);
         assertTrue(game.hasCollidedWithClyde());
-        clyde.setPos(7,5);
-        pacMan.setBody(3,2);
-        clyde.setLastBody(6,1);
-        pacMan.setLastBody(2,7);
+        clyde.setPos(15,13);
+        pacMan.setBody(11,10);
+        clyde.setLastBody(14,13);
+        pacMan.setLastBody(10,10);
         assertFalse(game.hasCollidedWithClyde());
     }
 

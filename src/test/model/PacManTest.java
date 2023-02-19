@@ -24,14 +24,12 @@ public class PacManTest {
     }
 
     @Test
-    void randomMoveTest() {
-
+    void MoveTest() {
         pacMan.setDirection(Direction.DOWN);
-        if (pacMan.getDir() == Direction.DOWN) {
-            pacMan.move();
-            assertEquals(10,pacMan.getPos().getPosX());
-            assertEquals(11,pacMan.getPos().getPosY());
-        }
+        pacMan.move();
+        assertEquals(10,pacMan.getPos().getPosX());
+        assertEquals(11,pacMan.getPos().getPosY());
+
 
         pacMan.setDirection(Direction.UP);
         if (pacMan.getDir() == Direction.UP) {
