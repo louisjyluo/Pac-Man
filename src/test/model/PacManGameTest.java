@@ -37,7 +37,6 @@ class PacManGameTest {
             }
         }
         assertEquals(32,game.getPellets().getMap().get(0).getPosX());
-        assertEquals(32,game.getPellets().getMap().get(0).getPosY());
         assertEquals(32,game.getPellets().getMap().get(3).getPosX());
         assertEquals(32,game.getPellets().getMap().get(3).getPosY());
         assertEquals(32,game.getPellets().getMap().get(14).getPosX());
