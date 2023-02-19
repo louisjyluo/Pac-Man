@@ -25,6 +25,7 @@ my first true solo project designed from scratch.
 
 ## User Stories
 - As a user, I want a map that features Pac-Man
+- As a user, the map needs to have walls, and pellets
 - As a user, Pac-Man needs to be able to collide with the walls
 - As a user, touching a ghost will kill me
 - As a user, I want to be able to collect pellets

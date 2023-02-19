@@ -28,6 +28,7 @@ class PacManGameTest {
         assertTrue(game.isPellet());
         game.tick();
         assertFalse(game.isPellet());
+        assertFalse(game.noMorePellets());
         assertNotEquals(32,game.getPellets().getMap().get(0).getPosX());
         assertNotEquals(32,game.getPellets().getMap().get(0).getPosY());
         for (int i = 0; i < 20; i++) {
@@ -37,6 +38,10 @@ class PacManGameTest {
         }
         assertEquals(32,game.getPellets().getMap().get(0).getPosX());
         assertEquals(32,game.getPellets().getMap().get(0).getPosY());
+        assertEquals(32,game.getPellets().getMap().get(3).getPosX());
+        assertEquals(32,game.getPellets().getMap().get(3).getPosY());
+        assertEquals(32,game.getPellets().getMap().get(14).getPosX());
+        assertEquals(32,game.getPellets().getMap().get(14).getPosY());
         assertTrue(game.noMorePellets());
         if(game.noMorePellets()) {
             game.tick();

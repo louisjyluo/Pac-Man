@@ -24,28 +24,27 @@ public class GhostTest {
     @Test
     void randomMoveTest() {
         if (blinky.getNum().nextDouble() < 0.25) {
-            blinky.move();
+            blinky.moveDown();
             assertEquals(10,blinky.getPos().getPosX());
             assertEquals(8,blinky.getPos().getPosY());
         }
 
-
         if (blinky.getNum().nextDouble() >= 0.25 && blinky.getNum().nextDouble() < 0.5) {
-            blinky.move();
+            blinky.moveUp();
             assertEquals(11,blinky.getPos().getPosX());
             assertEquals(7,blinky.getPos().getPosY());
         }
 
 
         if (blinky.getNum().nextDouble() >= 0.5 && blinky.getNum().nextDouble() < 0.75) {
-            blinky.move();
+            blinky.moveRight();
             assertEquals(11,blinky.getPos().getPosX());
             assertEquals(7,blinky.getPos().getPosY());
         }
 
 
         if (blinky.getNum().nextDouble() >= 0.75) {
-            blinky.move();
+            blinky.moveLeft();
             assertEquals(10,blinky.getPos().getPosX());
             assertEquals(7,blinky.getPos().getPosY());
         }

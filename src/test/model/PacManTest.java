@@ -25,6 +25,7 @@ public class PacManTest {
 
     @Test
     void randomMoveTest() {
+
         pacMan.setDirection(Direction.DOWN);
         if (pacMan.getDir() == Direction.DOWN) {
             pacMan.move();
