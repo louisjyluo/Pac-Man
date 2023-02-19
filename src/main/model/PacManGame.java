@@ -7,10 +7,13 @@ public class PacManGame {
     private final Ghost clyde;
     private final PacMan pacMan;
     private final Pellets pellets;
-    private final Map map;
+    private final Walls map;
     private Boolean ended;
     private final int tickPerSec;
 
+    //REQUIRES: tickPerSec > 0;
+    //MODIFIES: this
+    //EFFECTS: sets up a new game
     public PacManGame() {
         blinky = new Ghost();
         pinky = new Ghost();
@@ -18,7 +21,7 @@ public class PacManGame {
         clyde = new Ghost();
         pacMan = new PacMan();
         pellets = new Pellets();
-        map = new Map();
+        map = new Walls();
         ended = false;
         tickPerSec = 4;
     }
@@ -160,7 +163,7 @@ public class PacManGame {
         return pacMan;
     }
 
-    public Map getMap() {
+    public Walls getMap() {
         return map;
     }
 

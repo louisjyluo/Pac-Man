@@ -5,13 +5,16 @@ public class PacMan {
     private Position body;
     private Direction dir;
     private Position lastBody;
-    private final Map walls;
+    private final Walls walls;
 
+    //REQUIRES: starting position must be not a wall, inside the ghost box, and within the map.
+    //MODIFIES: this
+    //EFFECTS: Sets up PacMan's starting position
     public PacMan() {
         this.body = new Position(10, 10);
         this.dir = Direction.UP;
         lastBody = new Position(10,10);
-        walls = new Map();
+        walls = new Walls();
     }
 
     //MODIFIES: this

@@ -2,7 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
-public class Map {
+//Represents all the walls in the map
+public class Walls {
     private int[][] walls  = {
             {0,1}, {0,2},{0,3},{0,4},{0,5},{0,6},{0,7},{0,8},{0,9},{0,10},{0,11},{0,12},{0,13},{0,14},{0,15},{0,16},
             {0,17},{0,18},{0,19}, {1,1}, {1,10}, {1,19}, {2,1}, {2,3},{2,4},{2,5}, {2,7},{2,8}, {2,10}, {2,12},{2,13},
@@ -18,8 +19,8 @@ public class Map {
     };
 
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: creates the walls by taking all the walls coordinates and turning them into positions.
     public ArrayList<Position> makeMap() {
         ArrayList<Position> map = new ArrayList<>();
         for (int i = 0; i < walls.length; i++) {

@@ -2,21 +2,25 @@ package model;
 
 import java.util.Random;
 
+//Class that represents the ghosts in PacMan
 public class Ghost {
     private Position body;
     private Position lastBody;
-    private Map walls;
+    private Walls walls;
     private Random num;
 
+    //REQUIRES: starting position must be inside the ghost box.
+    //MODIFIES: this
+    //EFFECTS: Sets up the ghosts starting position
     public Ghost() {
         this.body = new Position(10,7);
         this.lastBody = new Position(10,7);
-        walls = new Map();
+        walls = new Walls();
         num = new Random();
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: move the ghost randomly based on the randomly generated number
     public void move() {
         if (num.nextDouble() < 0.25) {
             moveDown();
@@ -30,8 +34,8 @@ public class Ghost {
 
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: moves the ghost up by one, unless not possible
     public void moveUp() {
         if (cantMoveUp()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -41,8 +45,8 @@ public class Ghost {
         }
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: moves the ghost down by one, unless not possible
     public void moveDown() {
         if (cantMoveDown()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -52,8 +56,8 @@ public class Ghost {
         }
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: moves the ghost left by one, unless not possible
     public void moveLeft() {
         if (cantMoveLeft()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -63,8 +67,8 @@ public class Ghost {
         }
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: moves the ghost right by one, unless not possible
     public void moveRight() {
         if (cantMoveRight()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -74,8 +78,8 @@ public class Ghost {
         }
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: return true if there is a wall above the ghost
     public boolean cantMoveDown() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosY() + 1 == walls.makeMap().get(i).getPosY()
@@ -86,8 +90,8 @@ public class Ghost {
         return false;
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: return true if there is a wall left of the ghost
     public boolean cantMoveLeft() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosX() - 1 == walls.makeMap().get(i).getPosX()
@@ -98,8 +102,8 @@ public class Ghost {
         return false;
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: return true if there is a wall right of the ghost
     public boolean cantMoveRight() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosX() + 1 == walls.makeMap().get(i).getPosX()
@@ -110,8 +114,8 @@ public class Ghost {
         return false;
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: return true if there is a wall below the ghost
     public boolean cantMoveUp() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosY() - 1 == walls.makeMap().get(i).getPosY()

@@ -1,10 +1,11 @@
 package model;
 
 import java.util.ArrayList;
-//15 * 20
 
+//The map of all the pellets in the game
 public class Pellets {
     private int score;
+    private ArrayList<Position> map;
     private int[][] pellets  = {
             {1,2},{1,3},{1,4},{1,5},{1,6},{1,7},{1,8},{1,9},{1,11}, {1,12},{1,13},{1,14},{1,15},{1,16},{1,17},{1,18},
             {2,2},{2,6},{2,9},{2,11},{2,14},{3,14},{2,18},{3,18},{3,2},{3,6},{3,9},{3,11},{5,16},{6,16},
@@ -16,15 +17,16 @@ public class Pellets {
             {13,5},{13,6},{13,7},{13,8},{12,7},{11,7},{13,9},{13,11},{13,12},{13,13},{13,14},{13,15},{13,16},
             {11,13},{12,13},{12,16},{11,16},{12,11},{12,9},{12,10},{11,10}
     };
-    ArrayList<Position> map;
 
+    //MODIFIES: this
+    //EFFECTS: creates new map, and sets score to 0
     public Pellets() {
         score = 0;
         map = new ArrayList<>();
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: makes the map by turning the coordinates into positions
     public ArrayList<Position> makePellets() {
         for (int i = 0; i < pellets.length; i++) {
             Position pixel = new Position(pellets[i][1], pellets[i][0]);
@@ -33,14 +35,14 @@ public class Pellets {
         return map;
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: increase the score by 20
     public int increaseScore() {
         return score += 20;
     }
 
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: when PacMan touches a pellet, it will be set to a position outside the map.
     public void eatPellet(int posX, int posY) {
         for (int i = 0;  i < map.size(); i++) {
             if (map.get(i).getPosX() == posX

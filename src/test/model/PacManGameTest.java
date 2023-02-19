@@ -28,11 +28,15 @@ class PacManGameTest {
         assertTrue(game.isPellet());
         game.tick();
         assertFalse(game.isPellet());
+        assertNotEquals(32,game.getPellets().getMap().get(0).getPosX());
+        assertNotEquals(32,game.getPellets().getMap().get(0).getPosY());
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 game.getPellets().eatPellet(i,j);
             }
         }
+        assertEquals(32,game.getPellets().getMap().get(0).getPosX());
+        assertEquals(32,game.getPellets().getMap().get(0).getPosY());
         assertTrue(game.noMorePellets());
         if(game.noMorePellets()) {
             game.tick();
@@ -50,18 +54,6 @@ class PacManGameTest {
         pacMan.setLastBody(4,3);
         assertTrue(game.hasCollidedWithBlinky());
         if(game.hasCollidedWithBlinky()) {
-            game.tick();
-            assertTrue(game.isEnded());
-        }
-        if(game.hasCollidedWithPinky()) {
-            game.tick();
-            assertTrue(game.isEnded());
-        }
-        if(game.hasCollidedWithInky()) {
-            game.tick();
-            assertTrue(game.isEnded());
-        }
-        if(game.hasCollidedWithClyde()) {
             game.tick();
             assertTrue(game.isEnded());
         }
