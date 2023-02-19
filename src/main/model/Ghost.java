@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Ghost {
@@ -9,8 +8,8 @@ public class Ghost {
     private Map walls;
 
     public Ghost() {
-        this.body = new Position(13,15);
-        this.lastBody = new Position(13,15);
+        this.body = new Position(10,7);
+        this.lastBody = new Position(10,7);
         walls = new Map();
     }
 
@@ -110,6 +109,14 @@ public class Ghost {
 
     public Position getPos() {
         return body;
+    }
+
+    public void setPos(int x, int y) {
+        this.body = new Position(x,y);
+    }
+
+    public void setLastBody(int x, int y) {
+        this.lastBody = new Position(x,y);
     }
 
 }

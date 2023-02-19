@@ -1,24 +1,21 @@
 package model;
 
-import java.util.ArrayList;
-import model.Ghost;
-import model.Map;
-import ui.TerminalGame;
-
-
+//Pacman class - represents PacMan, have move() method, wall collision, direction.
 public class PacMan {
     private Position body;
     private Direction dir;
     private Position lastBody;
-    private Map walls;
+    private final Map walls;
 
     public PacMan() {
-        this.body = new Position(13, 18);
+        this.body = new Position(10, 10);
         this.dir = Direction.UP;
-        lastBody = new Position(13,18);
+        lastBody = new Position(10,10);
         walls = new Map();
     }
 
+    //MODIFIES: this
+    //EFFECTS: Moves pacman with arrow keys.
     public void move() {
         if (dir == Direction.RIGHT) {
             moveRight();
@@ -31,6 +28,8 @@ public class PacMan {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: move right if possible.
     public void moveRight() {
         if (cantMoveRight()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -40,6 +39,8 @@ public class PacMan {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: move left if possible.
     public void moveLeft() {
         if (cantMoveLeft()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -49,6 +50,8 @@ public class PacMan {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: move up if possible.
     public void moveUp() {
         if (cantMoveUp()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -58,6 +61,8 @@ public class PacMan {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: move down if possible.
     public void moveDown() {
         if (cantMoveDown()) {
             body = new Position(body.getPosX(), body.getPosY());
@@ -67,6 +72,8 @@ public class PacMan {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: returns true if a wall occupies the space below.
     public boolean cantMoveDown() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosY() + 1 == walls.makeMap().get(i).getPosY()
@@ -77,6 +84,8 @@ public class PacMan {
         return false;
     }
 
+    //MODIFIES: this
+    //EFFECTS: returns true if a wall occupies the space to the left.
     public boolean cantMoveLeft() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosX() - 1 == walls.makeMap().get(i).getPosX()
@@ -87,6 +96,8 @@ public class PacMan {
         return false;
     }
 
+    //MODIFIES: this
+    //EFFECTS: returns true if a wall occupies the space to the right.
     public boolean cantMoveRight() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosX() + 1 == walls.makeMap().get(i).getPosX()
@@ -97,6 +108,8 @@ public class PacMan {
         return false;
     }
 
+    //MODIFIES: this
+    //EFFECTS: returns true if a wall occupies the space above.
     public boolean cantMoveUp() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosY() - 1 == walls.makeMap().get(i).getPosY()
@@ -118,5 +131,15 @@ public class PacMan {
     public Position getLastBody() {
         return lastBody;
     }
+
+    public void setBody(int x, int y) {
+        this.body = new Position(x,y);
+    }
+
+    public void setLastBody(int x, int y) {
+        this.lastBody = new Position(x,y);
+    }
+
+
 
 }

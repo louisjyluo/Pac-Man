@@ -1,29 +1,30 @@
 package model;
 
-import model.Ghost;
-import model.PacMan;
-import model.Map;
-
-import java.util.ArrayList;
-
 public class PacManGame {
-    private Ghost blinky = new Ghost();
-    private Ghost pinky = new Ghost();
-    private Ghost inky = new Ghost();
-    private Ghost clyde = new Ghost();
-    private PacMan pacMan = new PacMan();
-    private Pellets pellets = new Pellets();
-    private Map map = new Map();
-    private Boolean ended = false;
-    private int maxX;
-    private int maxY;
-    private int tickPerSec = 4;
+    private final Ghost blinky;
+    private final Ghost pinky;
+    private final Ghost inky;
+    private final Ghost clyde;
+    private final PacMan pacMan;
+    private final Pellets pellets;
+    private final Map map;
+    private Boolean ended;
+    private final int tickPerSec;
 
-    public PacManGame(int maxX, int maxY) {
-        this.maxX = maxX;
-        this.maxY = maxY;
+    public PacManGame() {
+        blinky = new Ghost();
+        pinky = new Ghost();
+        inky = new Ghost();
+        clyde = new Ghost();
+        pacMan = new PacMan();
+        pellets = new Pellets();
+        map = new Map();
+        ended = false;
+        tickPerSec = 4;
     }
 
+    //MODIFIES: this
+    //EFFECTS: when game is running, each tick will run this code once.
     public void tick() {
         blinky.move();
         pinky.move();
@@ -41,6 +42,8 @@ public class PacManGame {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: returns true if pac-man is on a position that contains a pellet.
     public boolean isPellet() {
         for (int i = 0; i < pellets.getPellet().length; i++) {
             if (pacMan.getPos().getPosX() == pellets.makePellets().get(i).getPosX()
@@ -51,6 +54,9 @@ public class PacManGame {
         return false;
     }
 
+    //MODIFIES: this
+    //EFFECTS: returns true when all pellets are removed from the playable
+    // map by setting all pellets to position 32,32.
     public boolean noMorePellets() {
         for (int i = 0; i < pellets.getPellet().length; i++) {
             if (!(pellets.getMap().get(i).getPosX() == 32
@@ -61,7 +67,8 @@ public class PacManGame {
         return true;
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: return true if Pac man has collided with Blinky.
     public boolean hasCollidedWithBlinky() {
         int blinkyPosX = blinky.getPos().getPosX();
         int blinkyLastPosX = blinky.getLastBody().getPosX();
@@ -73,10 +80,11 @@ public class PacManGame {
         int pacManLastPosY = pacMan.getLastBody().getPosY();
         return ((blinkyPosX == pacManPosX && blinkyPosY == pacManPosY)
                 || (blinkyPosX == pacManLastPosX &&  blinkyPosY == pacManLastPosY)
-                || (blinkyLastPosX == pacManPosX && blinkyLastPosY == pacManLastPosY)
-                || (blinkyLastPosY == pacManPosY && blinkyLastPosX == pacManLastPosX));
+                || (blinkyLastPosX == pacManPosX && blinkyLastPosY == pacManLastPosY));
     }
 
+    //MODIFIES: this
+    //EFFECTS: return true if Pac man has collided with Pinky.
     public boolean hasCollidedWithPinky() {
         int pinkyPosX = pinky.getPos().getPosX();
         int pinkyLastPosX = pinky.getLastBody().getPosX();
@@ -88,10 +96,11 @@ public class PacManGame {
         int pacManLastPosY = pacMan.getLastBody().getPosY();
         return ((pinkyPosX == pacManPosX && pinkyPosY == pacManPosY)
                 || (pinkyPosX == pacManLastPosX &&  pinkyPosY == pacManLastPosY)
-                || (pinkyLastPosX == pacManPosX && pinkyLastPosY == pacManLastPosY)
-                || (pinkyLastPosY == pacManPosY && pinkyLastPosX == pacManLastPosX));
+                || (pinkyLastPosX == pacManPosX && pinkyLastPosY == pacManLastPosY));
     }
 
+    //MODIFIES: this
+    //EFFECTS: return true if Pac man has collided with Inky.
     public boolean hasCollidedWithInky() {
         int inkyPosX = inky.getPos().getPosX();
         int inkyLastPosX = inky.getLastBody().getPosX();
@@ -103,10 +112,11 @@ public class PacManGame {
         int pacManLastPosY = pacMan.getLastBody().getPosY();
         return ((inkyPosX == pacManPosX && inkyPosY == pacManPosY)
                 || (inkyPosX == pacManLastPosX && inkyPosY == pacManLastPosY)
-                || (inkyLastPosX == pacManPosX && inkyLastPosY == pacManLastPosY)
-                || (inkyLastPosY == pacManPosY && inkyLastPosX == pacManLastPosX));
+                || (inkyLastPosX == pacManPosX && inkyLastPosY == pacManLastPosY));
     }
 
+    //MODIFIES: this
+    //EFFECTS: return true if Pac man has collided with Clyde.
     public boolean hasCollidedWithClyde() {
         int clydePosX = clyde.getPos().getPosX();
         int clydeLastPosX = blinky.getLastBody().getPosX();
@@ -118,8 +128,7 @@ public class PacManGame {
         int pacManLastPosY = pacMan.getLastBody().getPosY();
         return ((clydePosX == pacManPosX && clydePosY == pacManPosY)
                 || (clydePosX == pacManLastPosX &&  clydePosY == pacManLastPosY)
-                || (clydeLastPosX == pacManPosX && clydeLastPosY == pacManLastPosY)
-                || (clydeLastPosY == pacManPosY && clydeLastPosX == pacManLastPosX));
+                || (clydeLastPosX == pacManPosX && clydeLastPosY == pacManLastPosY));
     }
 
 
@@ -161,7 +170,7 @@ public class PacManGame {
 
 
 
-    //Pacman class - represents PacMan, have move() method, wall collision, direction.
+
     //Pacman direction - represents how PacMan should move,
     //Pacman position - represents a position in the game space for PacMan
     //Ghost class - ghosts move randomly around, leave it up to chance during turns,

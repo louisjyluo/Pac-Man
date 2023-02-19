@@ -1,7 +1,6 @@
 package ui;
 
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
+
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.gui2.MultiWindowTextGUI;
@@ -10,12 +9,8 @@ import com.googlecode.lanterna.gui2.dialogs.MessageDialogBuilder;
 import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.ResizeListener;
-import com.googlecode.lanterna.terminal.TerminalResizeListener;
-import com.googlecode.lanterna.terminal.swing.SwingTerminal;
 import model.*;
 import java.io.IOException;
 
@@ -23,20 +18,13 @@ public class TerminalGame {
     private PacManGame game;
     private TerminalScreen screen;
     private WindowBasedTextGUI endGui;
-    private SwingTerminal terminal;
 
     public void start() throws IOException, InterruptedException {
         screen = new DefaultTerminalFactory().createScreen();
         screen.startScreen();
-        int maxX = 28;
-        int maxY = 37;
         screen.doResizeIfNecessary();
-        game = new PacManGame(maxX, maxY);
+        game = new PacManGame();
         beginTicks();
-    }
-
-    public PacManGame getGame() {
-        return game;
     }
 
     private void beginTicks() throws IOException, InterruptedException {
@@ -182,7 +170,7 @@ public class TerminalGame {
     private void drawPosition(Position pos, TextColor color, char c) {
         TextGraphics text = screen.newTextGraphics();
         text.setForegroundColor(color);
-        text.putString(pos.getPosX() * 2, pos.getPosY() + 1, String.valueOf(c));
+        text.putString(pos.getPosX() * 2 + 18, pos.getPosY() + 4, String.valueOf(c));
 
 
     }
