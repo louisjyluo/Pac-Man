@@ -38,7 +38,7 @@ public class Pellets {
     //MODIFIES: this
     //EFFECTS: increase the score by 20
     public int increaseScore() {
-        return score += 20;
+        return score += 10;
     }
 
     //MODIFIES: this
