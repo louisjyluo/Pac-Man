@@ -63,6 +63,24 @@ class PacManGameTest {
                 assertTrue(game.isEnded());
             }
         }
+        while(!game.hasCollidedWithBlinky()){
+            game.tick();
+            if(game.hasCollidedWithBlinky()) {
+                assertTrue(game.isEnded());
+            }
+        }
+        while(!game.hasCollidedWithBlinky()){
+            game.tick();
+            if(game.hasCollidedWithBlinky()) {
+                assertTrue(game.isEnded());
+            }
+        }
+        while(!game.hasCollidedWithBlinky()){
+            game.tick();
+            if(game.hasCollidedWithBlinky()) {
+                assertTrue(game.isEnded());
+            }
+        }
         blinky.setPos(5,5);
         pacMan.setBody(5,4);
         blinky.setLastBody(6,5);
@@ -87,6 +105,24 @@ class PacManGameTest {
         pinky.setLastBody(3,2);
         pacMan.setLastBody(4,3);
         assertTrue(game.hasCollidedWithPinky());
+        while(!game.hasCollidedWithPinky()){
+            game.tick();
+            if(game.hasCollidedWithPinky()) {
+                assertTrue(game.isEnded());
+            }
+        }
+        while(!game.hasCollidedWithPinky()){
+            game.tick();
+            if(game.hasCollidedWithPinky()) {
+                assertTrue(game.isEnded());
+            }
+        }
+        while(!game.hasCollidedWithPinky()){
+            game.tick();
+            if(game.hasCollidedWithPinky()) {
+                assertTrue(game.isEnded());
+            }
+        }
         while(!game.hasCollidedWithPinky()){
             game.tick();
             if(game.hasCollidedWithPinky()) {
@@ -123,6 +159,24 @@ class PacManGameTest {
                 assertTrue(game.isEnded());
             }
         }
+        while(!game.hasCollidedWithInky()){
+            game.tick();
+            if(game.hasCollidedWithInky()) {
+                assertTrue(game.isEnded());
+            }
+        }
+        while(!game.hasCollidedWithInky()){
+            game.tick();
+            if(game.hasCollidedWithInky()) {
+                assertTrue(game.isEnded());
+            }
+        }
+        while(!game.hasCollidedWithInky()){
+            game.tick();
+            if(game.hasCollidedWithInky()) {
+                assertTrue(game.isEnded());
+            }
+        }
         inky.setPos(13,13);
         pacMan.setBody(13,12);
         inky.setLastBody(14,13);
@@ -147,6 +201,24 @@ class PacManGameTest {
         clyde.setLastBody(11,10);
         pacMan.setLastBody(12,11);
         assertTrue(game.hasCollidedWithClyde());
+        while(!game.hasCollidedWithClyde()){
+            game.tick();
+            if(game.hasCollidedWithClyde()) {
+                assertTrue(game.isEnded());
+            }
+        }
+        while(!game.hasCollidedWithClyde()){
+            game.tick();
+            if(game.hasCollidedWithClyde()) {
+                assertTrue(game.isEnded());
+            }
+        }
+        while(!game.hasCollidedWithClyde()){
+            game.tick();
+            if(game.hasCollidedWithClyde()) {
+                assertTrue(game.isEnded());
+            }
+        }
         while(!game.hasCollidedWithClyde()){
             game.tick();
             if(game.hasCollidedWithClyde()) {
