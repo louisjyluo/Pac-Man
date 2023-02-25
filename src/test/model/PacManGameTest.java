@@ -41,11 +41,10 @@ class PacManGameTest {
         assertEquals(32,game.getPellets().getMap().get(3).getPosY());
         assertEquals(32,game.getPellets().getMap().get(14).getPosX());
         assertEquals(32,game.getPellets().getMap().get(14).getPosY());
-        assertTrue(game.noMorePellets());
         game.tick();
-        if(game.noMorePellets()) {
-            assertTrue(game.isEnded());
-        }
+        assertTrue(game.noMorePellets());
+        assertTrue(game.isEnded());
+
 
     }
 
