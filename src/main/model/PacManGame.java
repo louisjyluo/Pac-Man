@@ -26,10 +26,10 @@ public class PacManGame {
         pacMan = new PacMan();
         pellets = new Pellets();
         listOfGhost = new ArrayList<>();
-        listOfGhost.add(inky);
         listOfGhost.add(blinky);
-        listOfGhost.add(clyde);
+        listOfGhost.add(inky);
         listOfGhost.add(pinky);
+        listOfGhost.add(clyde);
         map = new Walls();
         ended = false;
         tickPerSec = 4;
@@ -95,23 +95,6 @@ public class PacManGame {
             }
         }
         return false;
-    }
-
-
-    public Ghost getBlinky() {
-        return blinky;
-    }
-
-    public Ghost getPinky() {
-        return pinky;
-    }
-
-    public Ghost getInky() {
-        return inky;
-    }
-
-    public Ghost getClyde() {
-        return clyde;
     }
 
     public boolean isEnded() {

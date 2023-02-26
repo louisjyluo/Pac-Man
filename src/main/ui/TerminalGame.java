@@ -127,7 +127,7 @@ public class TerminalGame {
     }
 
     private void drawBlinky() {
-        Ghost blinky = game.getBlinky();
+        Ghost blinky = game.getListOfGhost().get(0);
 
         drawPosition(blinky.getPos(), TextColor.ANSI.RED, 'n');
 
@@ -140,21 +140,21 @@ public class TerminalGame {
     }
 
     private void drawInky() {
-        Ghost blinky = game.getInky();
+        Ghost blinky = game.getListOfGhost().get(1);
 
         drawPosition(blinky.getPos(), TextColor.ANSI.BLUE, 'n');
 
     }
 
     private void drawPinky() {
-        Ghost blinky = game.getPinky();
+        Ghost blinky = game.getListOfGhost().get(2);
 
         drawPosition(blinky.getPos(), TextColor.ANSI.MAGENTA, 'n');
 
     }
 
     private void drawClyde() {
-        Ghost blinky = game.getClyde();
+        Ghost blinky = game.getListOfGhost().get(3);
 
         drawPosition(blinky.getPos(), TextColor.ANSI.YELLOW, 'n');
 
