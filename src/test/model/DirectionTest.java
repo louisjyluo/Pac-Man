@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static model.Direction.RIGHT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//Test for Direction Class
 class DirectionTest {
     private Position pos;
     private Position pos1;

@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //The direction used by PacMan and Ghosts for movement
 public enum Direction {
     UP(0, -1),

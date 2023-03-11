@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//Test for Ghost Class
 public class GhostTest {
     private Ghost blinky;
 

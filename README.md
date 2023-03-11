@@ -38,4 +38,6 @@ my first true solo project designed from scratch.
 - As a user, I want multiple lives with Pac-Man
 - As a user, I want the difficulty to increase as the game progresses.
 - As a user, the game will rerun once all the pellets are gone.
+- As a user, the game requires a save and quit option
+- As a user, the game will load back my previous save
  

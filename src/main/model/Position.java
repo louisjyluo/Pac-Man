@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // represents the positions of every object in the game
-public class Position {
+public class Position implements Writable {
     private int posX;
     private int posY;
 
@@ -21,5 +24,12 @@ public class Position {
         return posY;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("X", posX);
+        json.put("Y", posY);
+        return json;
+    }
 
 }

@@ -1,5 +1,10 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.io.PipedOutputStream;
 import java.util.ArrayList;
 
 //Represents all the walls in the map
@@ -19,6 +24,8 @@ public class Walls {
     };
 
 
+
+
     //MODIFIES: this
     //EFFECTS: creates the walls by taking all the walls coordinates and turning them into positions.
     public ArrayList<Position> makeMap() {
@@ -30,10 +37,8 @@ public class Walls {
         return map;
     }
 
-
     public int[][] getWalls() {
         return walls;
     }
-
 
 }

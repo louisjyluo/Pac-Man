@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Pacman class - represents PacMan, have move() method, wall collision, direction.
-public class PacMan {
+public class PacMan implements Writable {
     private Position body;
     private Direction dir;
     private Position lastBody;
@@ -84,6 +87,9 @@ public class PacMan {
                 return true;
             }
         }
+        if (body.getPosX() == 10 && body.getPosY() + 1 == 6) {
+            return true;
+        }
         return false;
     }
 
@@ -121,6 +127,15 @@ public class PacMan {
             }
         }
         return false;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("position",body.toJson());
+        json.put("last position", lastBody.toJson());
+        json.put("direction", dir);
+        return json;
     }
 
     public Position getPos() {

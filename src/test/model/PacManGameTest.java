@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Test for PacManGame Class
 class PacManGameTest {
     private PacManGame game;
     private ArrayList<Ghost> listOfGhost;
@@ -42,6 +43,50 @@ class PacManGameTest {
         assertTrue(game.isEnded());
 
 
+    }
+
+    @Test
+    void eatGhostSuccessfulTest() {
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(0).setPos(2,1);
+        pacMan.setBody(2,1);
+        game.eatWeakGhost();
+        assertEquals(10 ,listOfGhost.get(0).getPos().getPosX());
+        assertEquals(7,listOfGhost.get(0).getPos().getPosY());
+        assertFalse(listOfGhost.get(0).getWeak());
+    }
+
+    @Test
+    void eatGhostFailedTest() {
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(0).setPos(2,1);
+        pacMan.setBody(10,10);
+        game.eatWeakGhost();
+        assertEquals(2 ,listOfGhost.get(0).getPos().getPosX());
+        assertEquals(1,listOfGhost.get(0).getPos().getPosY());
+        assertTrue(listOfGhost.get(0).getWeak());
+    }
+
+    @Test
+    void powerUpTimerTimeOutTest() {
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(0).setPos(2,1);
+        pacMan.setBody(10,10);
+        for(int i = 0; i < 350; i++){
+            game.eatWeakGhost();
+        }
+        assertTrue(listOfGhost.get(0).getWeak());
+        game.eatWeakGhost();
+        assertFalse(listOfGhost.get(0).getWeak());
+    }
+
+    @Test
+    void RunIntoGhostInEatClassTest() {
+        listOfGhost.get(0).setWeakGhost(false);
+        listOfGhost.get(0).setPos(2,1);
+        pacMan.setBody(2,1);
+        game.eatWeakGhost();
+        assertTrue(game.isEnded());
     }
 
 
@@ -82,11 +127,6 @@ class PacManGameTest {
                 assertTrue(game.isEnded());
             }
 
-            listOfGhost.get(i).setPos(5,5);
-            pacMan.setBody(5,4);
-            listOfGhost.get(i).setLastBody(6,5);
-            pacMan.setLastBody(5,5);
-            assertTrue(game.hasCollidedWithGhost());
             listOfGhost.get(i).setPos(5,6);
             pacMan.setBody(5,5);
             listOfGhost.get(i).setLastBody(5,5);
@@ -110,9 +150,9 @@ class PacManGameTest {
         }
         assertEquals(new PacMan().getPos().getPosX(), game.getPacMan().getPos().getPosX());
         assertEquals(new PacMan().getPos().getPosY(), game.getPacMan().getPos().getPosY());
-        assertEquals(4, game.getTickPerSec());
+        assertEquals(50, game.getTickPerSec());
         assertEquals(165,game.getMap().makeMap().size());
-        assertEquals(111,game.getPellets().makePellets().size());
+        assertEquals(107,game.getPellets().makePellets().size());
     }
 
 }

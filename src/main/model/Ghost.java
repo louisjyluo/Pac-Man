@@ -1,13 +1,17 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Random;
 
 //Class that represents the ghosts in PacMan
-public class Ghost {
+public class Ghost implements Writable {
     private Position body;
     private Position lastBody;
     private Walls walls;
     private Random num;
+    private Boolean weak;
 
     //REQUIRES: starting position must be inside the ghost box.
     //MODIFIES: this
@@ -17,7 +21,9 @@ public class Ghost {
         this.lastBody = new Position(10,7);
         walls = new Walls();
         num = new Random();
+        weak = false;
     }
+
 
     //MODIFIES: this
     //EFFECTS: move the ghost randomly based on the randomly generated number
@@ -126,6 +132,15 @@ public class Ghost {
         return false;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("position", body.toJson());
+        json.put("last position", lastBody.toJson());
+        json.put("state", weak);
+        return json;
+    }
+
     public Position getLastBody() {
         return lastBody;
     }
@@ -144,6 +159,14 @@ public class Ghost {
 
     public Random getNum() {
         return num;
+    }
+
+    public boolean getWeak() {
+        return weak;
+    }
+
+    public void setWeakGhost(boolean weak) {
+        this.weak =  weak;
     }
 
 }

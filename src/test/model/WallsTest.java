@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Test for Walls Class
 public class WallsTest {
     private Walls map;
 

@@ -1,9 +1,16 @@
 package ui;
 
+import java.io.FileNotFoundException;
 
+//Main class, the code starts here.
 public class Main {
     public static void main(String[] args) throws Exception {
-        TerminalGame game = new TerminalGame();
-        game.start();
+        try {
+            TerminalGame game = new TerminalGame();
+            game.start();
+        } catch (FileNotFoundException e) {
+            System.out.println("No files found");
+        }
+
     }
 }
