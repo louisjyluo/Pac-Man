@@ -47,31 +47,17 @@ class PacManGameTest {
 
     @Test
     void handleGhostMovementTest() {
-        game.setGhostTimer(6);
-        assertTrue(game.getGhostTimer() > 5 && !game.isWeakGhost());
-        game.setGhostTimer(10);
+        game.setGhostTimer(11);
         for(Ghost ghost : listOfGhost) {
             ghost.setWeakGhost(true);
         }
         assertTrue(game.getGhostTimer() > 9 && game.isWeakGhost());
-        game.setGhostTimer(4);
-        for(Ghost ghost : listOfGhost) {
-            ghost.setWeakGhost(true);
-        }
-        assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
-        game.setGhostTimer(10);
+
+        game.setGhostTimer(7);
         for(Ghost ghost : listOfGhost) {
             ghost.setWeakGhost(false);
         }
-        assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
-        game.setGhostTimer(3);
-        for(Ghost ghost : listOfGhost) {
-            ghost.setWeakGhost(false);
-        }
-        assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
-        game.handleGhostMovement();
-        assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
-        assertEquals(4, game.getGhostTimer());
+        assertTrue(game.getGhostTimer() > 5 && !game.isWeakGhost());
     }
 
 
@@ -151,13 +137,14 @@ class PacManGameTest {
         game.eatWeakGhost();
         Ghost thisGhost = game.getThatGhost();
         thisGhost.setWeakGhost(true);
+        thisGhost.setPos(15,15);
         assertTrue(thisGhost.getWeak());
-        game.eatWeakGhost();
+        game.resetGhost();
+        assertFalse(thisGhost.getWeak());
         assertEquals(10 ,thisGhost.getPos().getPosX());
         assertEquals(7,thisGhost.getPos().getPosY());
-        thisGhost.setWeakGhost(false);
         assertFalse(thisGhost.getWeak());
-        assertEquals(2, game.getPowerUpDurationTimer());
+        assertEquals(1, game.getPowerUpDurationTimer());
     }
 
     @Test

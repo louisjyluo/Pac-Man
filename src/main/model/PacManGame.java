@@ -70,19 +70,31 @@ public class PacManGame implements Writable {
     //MODIFIES: this
     //EFFECTS: handles the movement of ghosts per tick
     public void handleGhostMovement() {
+        strongGhostSpeed();
+        weakGhostSpeed();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: handles the speed when ghost is not weak
+    public void strongGhostSpeed() {
         if (ghostTimer > 5 && !isWeakGhost()) {
-            for (Ghost ghost : listOfGhost) {
-                ghost.move();
-            }
-            ghostTimer = 0;
-        }
-        if (ghostTimer > 9 && isWeakGhost()) {
             for (Ghost ghost : listOfGhost) {
                 ghost.move();
             }
             ghostTimer = 0;
         } else {
             ghostTimer++;
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: handles the speed when ghost is weak
+    public void weakGhostSpeed() {
+        if (ghostTimer > 9 && isWeakGhost()) {
+            for (Ghost ghost : listOfGhost) {
+                ghost.move();
+            }
+            ghostTimer = 0;
         }
     }
 
@@ -180,13 +192,7 @@ public class PacManGame implements Writable {
                 hasCollidedWithGhost();
                 Ghost thisGhost = listOfGhost.get(whichGhost);
                 thatGhost = thisGhost;
-                if (thisGhost.getWeak()) {
-                    thisGhost.setPos(10,7);
-                    thisGhost.setLastBody(10,7);
-                    thisGhost.setWeakGhost(false);
-                    pellets.increaseScoreGhost();
-                    whichGhost = -1;
-                }
+                resetGhost();
             }
             powerUpDurationTimer++;
         } else {
@@ -196,6 +202,18 @@ public class PacManGame implements Writable {
             powerUpDurationTimer = 0;
         }
 
+    }
+
+    // MODIFIES: this
+    // EFFECTS: resets the ghost to its original state and position
+    public void resetGhost() {
+        if (thatGhost.getWeak()) {
+            thatGhost.setPos(10,7);
+            thatGhost.setLastBody(10,7);
+            thatGhost.setWeakGhost(false);
+            pellets.increaseScoreGhost();
+            whichGhost = -1;
+        }
     }
 
 
