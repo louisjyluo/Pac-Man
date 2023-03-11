@@ -55,6 +55,7 @@ class PacManGameTest {
         }
         assertTrue(game.getGhostTimer() > 9 && game.isWeakGhost());
         game.handleGhostMovement();
+        assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
         assertEquals(0, game.getGhostTimer());
     }
 
@@ -91,6 +92,8 @@ class PacManGameTest {
         assertFalse(game.isPowerUp());
         assertEquals(33,game.getPower().getMap().get(0).getPosX());
         assertEquals(33,game.getPower().getMap().get(0).getPosY());
+        pacMan.setBody(1,1);
+        assertFalse(game.isPowerUp());
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 game.getPower().eatPowerUp(i,j);
@@ -111,6 +114,7 @@ class PacManGameTest {
         listOfGhost.get(0).setWeakGhost(true);
         listOfGhost.get(0).setPos(2,1);
         pacMan.setBody(2,1);
+        assertTrue(listOfGhost.get(0).getWeak());
         game.eatWeakGhost();
         assertEquals(10 ,listOfGhost.get(0).getPos().getPosX());
         assertEquals(7,listOfGhost.get(0).getPos().getPosY());
