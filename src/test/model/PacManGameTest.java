@@ -53,11 +53,25 @@ class PacManGameTest {
         for(Ghost ghost : listOfGhost) {
             ghost.setWeakGhost(true);
         }
-        assertFalse(game.getGhostTimer() > 5 && !game.isWeakGhost());
         assertTrue(game.getGhostTimer() > 9 && game.isWeakGhost());
+        game.setGhostTimer(4);
+        for(Ghost ghost : listOfGhost) {
+            ghost.setWeakGhost(true);
+        }
+        assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
+        game.setGhostTimer(10);
+        for(Ghost ghost : listOfGhost) {
+            ghost.setWeakGhost(false);
+        }
+        assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
+        game.setGhostTimer(3);
+        for(Ghost ghost : listOfGhost) {
+            ghost.setWeakGhost(false);
+        }
+        assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
         game.handleGhostMovement();
         assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
-        assertEquals(0, game.getGhostTimer());
+        assertEquals(4, game.getGhostTimer());
     }
 
 
@@ -141,6 +155,9 @@ class PacManGameTest {
         game.eatWeakGhost();
         assertEquals(10 ,thisGhost.getPos().getPosX());
         assertEquals(7,thisGhost.getPos().getPosY());
+        thisGhost.setWeakGhost(false);
+        assertFalse(thisGhost.getWeak());
+        assertEquals(2, game.getPowerUpDurationTimer());
     }
 
     @Test
