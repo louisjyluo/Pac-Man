@@ -53,8 +53,11 @@ class PacManGameTest {
         for(Ghost ghost : listOfGhost) {
             ghost.setWeakGhost(true);
         }
+        assertFalse(game.getGhostTimer() > 5 && !game.isWeakGhost());
         assertTrue(game.getGhostTimer() > 9 && game.isWeakGhost());
-        game.handleGhostMovement();
+        if(game.getGhostTimer() > 9 && game.isWeakGhost()) {
+            game.handleGhostMovement();
+        }
         assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
         assertEquals(0, game.getGhostTimer());
     }
@@ -92,8 +95,25 @@ class PacManGameTest {
         assertFalse(game.isPowerUp());
         assertEquals(33,game.getPower().getMap().get(0).getPosX());
         assertEquals(33,game.getPower().getMap().get(0).getPosY());
-        pacMan.setBody(1,1);
+        pacMan.setBody(4,1);
         assertFalse(game.isPowerUp());
+        game.tick();
+        assertFalse(game.isPowerUp());
+        pacMan.setBody(5,5);
+        assertFalse(game.isPowerUp());
+        game.tick();
+        assertFalse(game.isPowerUp());
+        pacMan.setBody(18, 4);
+        assertFalse(game.isPowerUp());
+        game.tick();
+        assertFalse(game.isPowerUp());
+        pacMan.setBody(18, 1);
+        if (pacMan.getPos().getPosX() == game.getPower().makePowerUps().get(1).getPosX()
+                && pacMan.getPos().getPosY() == game.getPower().makePowerUps().get(1).getPosY()) {
+            assertTrue(game.isPowerUp());
+            game.tick();
+            assertFalse(game.isPowerUp());
+        }
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 game.getPower().eatPowerUp(i,j);
@@ -115,6 +135,10 @@ class PacManGameTest {
         listOfGhost.get(0).setPos(2,1);
         pacMan.setBody(2,1);
         assertTrue(listOfGhost.get(0).getWeak());
+        if(listOfGhost.get(0).getWeak()) {
+            game.eatWeakGhost();
+            assertFalse(listOfGhost.get(0).getWeak());
+        }
         game.eatWeakGhost();
         assertEquals(10 ,listOfGhost.get(0).getPos().getPosX());
         assertEquals(7,listOfGhost.get(0).getPos().getPosY());
