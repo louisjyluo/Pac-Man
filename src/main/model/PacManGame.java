@@ -70,31 +70,19 @@ public class PacManGame implements Writable {
     //MODIFIES: this
     //EFFECTS: handles the movement of ghosts per tick
     public void handleGhostMovement() {
-        strongGhostSpeed();
-        weakGhostSpeed();
-    }
-
-    //MODIFIES: this
-    //EFFECTS: handles the speed when ghost is not weak
-    public void strongGhostSpeed() {
         if (ghostTimer > 5 && !isWeakGhost()) {
+            for (Ghost ghost : listOfGhost) {
+                ghost.move();
+            }
+            ghostTimer = 0;
+        }
+        if (ghostTimer > 9 && isWeakGhost()) {
             for (Ghost ghost : listOfGhost) {
                 ghost.move();
             }
             ghostTimer = 0;
         } else {
             ghostTimer++;
-        }
-    }
-
-    //MODIFIES: this
-    //EFFECTS: handles the speed when ghost is weak
-    public void weakGhostSpeed() {
-        if (ghostTimer > 9 && isWeakGhost()) {
-            for (Ghost ghost : listOfGhost) {
-                ghost.move();
-            }
-            ghostTimer = 0;
         }
     }
 
