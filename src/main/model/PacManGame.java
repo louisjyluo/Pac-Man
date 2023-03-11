@@ -208,10 +208,12 @@ public class PacManGame implements Writable {
     //MODIFIES: this
     //EFFECTS: returns true if any of the ghosts is weak
     public boolean isWeakGhost() {
-        return (listOfGhost.get(0).getWeak()
-               || listOfGhost.get(1).getWeak()
-               || listOfGhost.get(2).getWeak()
-               || listOfGhost.get(3).getWeak());
+        for (int i = 0; i < listOfGhost.size(); i++) {
+            if (listOfGhost.get(i).getWeak()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     //MODIFIES: this

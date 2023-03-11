@@ -71,6 +71,8 @@ public class TerminalGame {
         }
 
         Direction dir = directionFrom(stroke.getKeyType());
+        saveLoadAddKeys(stroke.getKeyType());
+
 
         if (dir == null) {
             return;
@@ -91,6 +93,13 @@ public class TerminalGame {
                 return Direction.RIGHT;
             case ArrowLeft:
                 return Direction.LEFT;
+            default:
+                return null;
+        }
+    }
+
+    public void saveLoadAddKeys(KeyType type) {
+        switch (type) {
             case F1:
                 System.out.println("Saving...");
                 savePacManGame();
@@ -99,10 +108,11 @@ public class TerminalGame {
                 System.out.println("Loading old save");
                 loadPacManGame();
                 break;
+            case F3:
+                Ghost ghost = new Ghost();
+                game.getListOfGhost().add(ghost);
             default:
-                return null;
         }
-        return null;
     }
 
 
@@ -126,6 +136,7 @@ public class TerminalGame {
         drawInky();
         drawPinky();
         drawClyde();
+        drawExtraGhosts();
     }
 
     //MODIFIES: this
@@ -155,7 +166,7 @@ public class TerminalGame {
 
         text = screen.newTextGraphics();
         text.setForegroundColor(TextColor.ANSI.WHITE);
-        text.putString(20, 0, "F1 to save to file - F2 to load saved file");
+        text.putString(20, 0, "F1: save - F2:load - F3: add Ghost");
     }
 
     //MODIFIES: this
@@ -225,6 +236,19 @@ public class TerminalGame {
             drawPosition(clyde.getPos(), TextColor.ANSI.YELLOW, 'n');
         }
 
+    }
+
+    //MODIFIES: this
+    //EFFECTS: draws ghosts that were added during the game, and updates with his path
+    private void drawExtraGhosts() {
+        for (int i = 4; i < game.getListOfGhost().size(); i++) {
+            Ghost ghost = game.getListOfGhost().get(i);
+            if (ghost.getWeak()) {
+                drawPosition(ghost.getPos(), TextColor.ANSI.CYAN, 'n');
+            } else {
+                drawPosition(ghost.getPos(), TextColor.ANSI.YELLOW, 'n');
+            }
+        }
     }
 
     //MODIFIES: this
