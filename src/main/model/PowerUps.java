@@ -40,6 +40,8 @@ public class PowerUps implements Writable {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: parse the power Ups into Json
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -47,6 +49,8 @@ public class PowerUps implements Writable {
         return json;
     }
 
+    //MODIFIES: this
+    //EFFECTS: converts each power Up array value into Position Json
     private JSONArray pupToJson() {
         JSONArray jsonArray = new JSONArray();
         for (int w = 0; w < powerUps.length; w++) {
@@ -59,6 +63,9 @@ public class PowerUps implements Writable {
         this.map = map;
     }
 
+    public ArrayList<Position> getMap() {
+        return map;
+    }
 
     public int[][] getPowerUps() {
         return powerUps;

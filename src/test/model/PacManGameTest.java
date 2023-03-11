@@ -46,6 +46,67 @@ class PacManGameTest {
     }
 
     @Test
+    void handleGhostMovementTest() {
+        game.setGhostTimer(6);
+        assertTrue(game.getGhostTimer() > 5 && !game.isWeakGhost());
+        game.setGhostTimer(10);
+        for(Ghost ghost : listOfGhost) {
+            ghost.setWeakGhost(true);
+        }
+        assertTrue(game.getGhostTimer() > 9 && game.isWeakGhost());
+        game.handleGhostMovement();
+        assertEquals(0, game.getGhostTimer());
+    }
+
+
+
+    @Test
+    void eatPowerUpToWeakenGhostTest() {
+        pacMan.setBody(2,1);
+        assertTrue(game.isPowerUp());
+        game.eatPowerUpToWeakenGhost();
+        assertEquals(0, game.getPowerUpDurationTimer());
+        for(Ghost ghost : listOfGhost) {
+            assertTrue(ghost.getWeak());
+        }
+    }
+
+    @Test
+    void EndStateTest() {
+        pacMan.setBody(2,1);
+        listOfGhost.get(0).setPos(2,1);
+        listOfGhost.get(0).setWeakGhost(true);
+        assertTrue(game.isWeakGhost());
+        game.eatWeakGhost();
+        assertEquals(10, listOfGhost.get(0).getPos().getPosX());
+        assertEquals(7, listOfGhost.get(0).getPos().getPosY());
+
+    }
+
+    @Test
+    void isPowerUpTest() {
+        pacMan.setBody(2,1);
+        assertTrue(game.isPowerUp());
+        game.tick();
+        assertFalse(game.isPowerUp());
+        assertEquals(33,game.getPower().getMap().get(0).getPosX());
+        assertEquals(33,game.getPower().getMap().get(0).getPosY());
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 20; j++) {
+                game.getPower().eatPowerUp(i,j);
+            }
+        }
+        assertEquals(33,game.getPower().getMap().get(0).getPosX());
+        assertEquals(33,game.getPower().getMap().get(1).getPosX());
+        assertEquals(33,game.getPower().getMap().get(2).getPosX());
+        assertEquals(33,game.getPower().getMap().get(3).getPosX());
+        assertEquals(33,game.getPower().getMap().get(0).getPosY());
+        assertEquals(33,game.getPower().getMap().get(1).getPosY());
+        assertEquals(33,game.getPower().getMap().get(2).getPosY());
+        assertEquals(33,game.getPower().getMap().get(3).getPosY());
+    }
+
+    @Test
     void eatGhostSuccessfulTest() {
         listOfGhost.get(0).setWeakGhost(true);
         listOfGhost.get(0).setPos(2,1);
@@ -80,13 +141,89 @@ class PacManGameTest {
         assertFalse(listOfGhost.get(0).getWeak());
     }
 
+
     @Test
-    void RunIntoGhostInEatClassTest() {
+    void isWeakGhostTest() {
         listOfGhost.get(0).setWeakGhost(false);
-        listOfGhost.get(0).setPos(2,1);
-        pacMan.setBody(2,1);
-        game.eatWeakGhost();
-        assertTrue(game.isEnded());
+        listOfGhost.get(1).setWeakGhost(false);
+        listOfGhost.get(2).setWeakGhost(false);
+        listOfGhost.get(3).setWeakGhost(false);
+        assertFalse(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(false);
+        listOfGhost.get(1).setWeakGhost(false);
+        listOfGhost.get(2).setWeakGhost(false);
+        listOfGhost.get(3).setWeakGhost(true);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(false);
+        listOfGhost.get(1).setWeakGhost(false);
+        listOfGhost.get(2).setWeakGhost(true);
+        listOfGhost.get(3).setWeakGhost(false);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(false);
+        listOfGhost.get(1).setWeakGhost(false);
+        listOfGhost.get(2).setWeakGhost(true);
+        listOfGhost.get(3).setWeakGhost(true);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(false);
+        listOfGhost.get(1).setWeakGhost(true);
+        listOfGhost.get(2).setWeakGhost(false);
+        listOfGhost.get(3).setWeakGhost(false);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(false);
+        listOfGhost.get(1).setWeakGhost(true);
+        listOfGhost.get(2).setWeakGhost(false);
+        listOfGhost.get(3).setWeakGhost(true);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(false);
+        listOfGhost.get(1).setWeakGhost(true);
+        listOfGhost.get(2).setWeakGhost(true);
+        listOfGhost.get(3).setWeakGhost(false);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(false);
+        listOfGhost.get(1).setWeakGhost(true);
+        listOfGhost.get(2).setWeakGhost(true);
+        listOfGhost.get(3).setWeakGhost(true);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(1).setWeakGhost(false);
+        listOfGhost.get(2).setWeakGhost(false);
+        listOfGhost.get(3).setWeakGhost(false);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(1).setWeakGhost(false);
+        listOfGhost.get(2).setWeakGhost(false);
+        listOfGhost.get(3).setWeakGhost(true);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(1).setWeakGhost(false);
+        listOfGhost.get(2).setWeakGhost(true);
+        listOfGhost.get(3).setWeakGhost(false);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(1).setWeakGhost(false);
+        listOfGhost.get(2).setWeakGhost(true);
+        listOfGhost.get(3).setWeakGhost(true);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(1).setWeakGhost(true);
+        listOfGhost.get(2).setWeakGhost(false);
+        listOfGhost.get(3).setWeakGhost(false);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(1).setWeakGhost(true);
+        listOfGhost.get(2).setWeakGhost(false);
+        listOfGhost.get(3).setWeakGhost(true);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(1).setWeakGhost(true);
+        listOfGhost.get(2).setWeakGhost(true);
+        listOfGhost.get(3).setWeakGhost(false);
+        assertTrue(game.isWeakGhost());
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(1).setWeakGhost(true);
+        listOfGhost.get(2).setWeakGhost(true);
+        listOfGhost.get(3).setWeakGhost(true);
+        assertTrue(game.isWeakGhost());
     }
 
 

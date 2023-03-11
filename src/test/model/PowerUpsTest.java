@@ -39,6 +39,22 @@ public class PowerUpsTest {
         int posY = map.get(0).getPosY();
         assertEquals(33, posX);
         assertEquals(33, posY);
+        pow.eatPowerUp(18,1);
+         posX = map.get(1).getPosX();
+         posY = map.get(1).getPosY();
+        assertEquals(33, posX);
+        assertEquals(33, posY);
+        pow.eatPowerUp(18,1);
+         posX = map.get(2).getPosX();
+         posY = map.get(2).getPosY();
+        assertEquals(4, posX);
+        assertEquals(13, posY);
+        pow.eatPowerUp(16,13);
+         posX = map.get(3).getPosX();
+         posY = map.get(3).getPosY();
+        assertEquals(33, posX);
+        assertEquals(33, posY);
+
 
     }
 

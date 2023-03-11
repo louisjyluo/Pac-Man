@@ -107,5 +107,22 @@ public class PacManTest {
         assertEquals(12,pacMan.getPos().getPosY());
     }
 
+    @Test
+    void moveAtGhostDoor() {
+        pacMan.setBody(10,5);
+        pacMan.moveLeft();
+        assertEquals(9,pacMan.getPos().getPosX());
+        assertEquals(5,pacMan.getPos().getPosY());
+        pacMan.moveRight();
+        assertEquals(10,pacMan.getPos().getPosX());
+        assertEquals(5,pacMan.getPos().getPosY());
+        pacMan.moveUp();
+        assertEquals(10,pacMan.getPos().getPosX());
+        assertEquals(5,pacMan.getPos().getPosY());
+        pacMan.moveDown();
+        assertEquals(10,pacMan.getPos().getPosX());
+        assertEquals(5,pacMan.getPos().getPosY());
+    }
+
 
 }

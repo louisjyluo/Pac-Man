@@ -79,7 +79,7 @@ public class PacMan implements Writable {
     }
 
     //MODIFIES: this
-    //EFFECTS: returns true if a wall occupies the space below.
+    //EFFECTS: returns true if a wall occupies the space below, and also if the ghost gate is below it.
     public boolean cantMoveDown() {
         for (int i = 0; i < walls.getWalls().length; i++) {
             if (body.getPosY() + 1 == walls.makeMap().get(i).getPosY()
@@ -129,6 +129,8 @@ public class PacMan implements Writable {
         return false;
     }
 
+    //MODIFIES: this
+    //EFFECTS: parses PacMan into positions and directions
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

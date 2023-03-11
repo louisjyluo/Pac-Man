@@ -2,7 +2,6 @@ package persistence;
 
 import model.PacManGame;
 import org.json.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -13,6 +12,7 @@ public class JsonWriter {
     private PrintWriter writer;
     private String destination;
 
+    // MODIFIES: this
     // EFFECTS: constructs writer to write to destination file
     public JsonWriter(String destination) {
         this.destination = destination;

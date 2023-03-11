@@ -13,10 +13,8 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.SQLOutput;
 
 //Creates the ui and draws the game using Lanterna
 public class TerminalGame {
@@ -118,7 +116,7 @@ public class TerminalGame {
 
             return;
         }
-        drawScore();
+        drawTopScreen();
         drawPowerUps();
         drawMap();
         drawGhostGate();
@@ -144,8 +142,9 @@ public class TerminalGame {
     }
 
     //MODIFIES: this
-    //EFFECTS: draws the score on the top left of the terminal as a pellet gets collected
-    private void drawScore() {
+    //EFFECTS: draws the score on the top left of the terminal as a pellet gets collected, and
+    //also the keys to save and load the file.
+    private void drawTopScreen() {
         TextGraphics text = screen.newTextGraphics();
         text.setForegroundColor(TextColor.ANSI.BLUE);
         text.putString(1, 0, "Score: ");
@@ -153,6 +152,10 @@ public class TerminalGame {
         text = screen.newTextGraphics();
         text.setForegroundColor(TextColor.ANSI.WHITE);
         text.putString(8, 0, String.valueOf(game.getPellets().getScore()));
+
+        text = screen.newTextGraphics();
+        text.setForegroundColor(TextColor.ANSI.WHITE);
+        text.putString(20, 0, "F1 to save to file - F2 to load saved file");
     }
 
     //MODIFIES: this
@@ -257,6 +260,7 @@ public class TerminalGame {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: saves the workroom to file
     private void savePacManGame() {
         try {

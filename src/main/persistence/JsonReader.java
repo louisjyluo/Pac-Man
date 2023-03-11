@@ -4,21 +4,24 @@ import model.*;
 import org.json.*;
 
 import java.io.IOException;
-import java.io.PipedOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
+//Class that parse the Json into code cited from JsonSerializationDemo-master
 public class JsonReader {
     private String source;
 
+    // REQUIRES: file to not be empty
+    // MODIFIES: this
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
         this.source = source;
     }
 
+    // MODIFIES: this
     // EFFECTS: reads PacManGame from file and returns it;
     // throws IOException if an error occurs reading data from file
     public PacManGame read() throws IOException {

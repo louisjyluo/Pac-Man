@@ -65,14 +65,8 @@ public class Pellets implements Writable {
         }
     }
 
-    public void setMap(ArrayList<Position> map) {
-        this.map = map;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
+    //MODIFIES: this
+    //EFFECTS: parses the score and pellets into json
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -81,6 +75,8 @@ public class Pellets implements Writable {
         return json;
     }
 
+    //MODIFIES: this
+    //EFFECTS: converts all the array values in pellet into position Json
     private JSONArray pelletsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (int w = 0; w < pellets.length; w++) {
@@ -89,6 +85,15 @@ public class Pellets implements Writable {
         return jsonArray;
     }
 
+
+
+    public void setMap(ArrayList<Position> map) {
+        this.map = map;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     public int[][] getPellet() {
         return pellets;

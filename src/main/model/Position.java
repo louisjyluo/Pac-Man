@@ -16,15 +16,9 @@ public class Position implements Writable {
         posY = y;
     }
 
-    public int getPosX() {
-        return posX;
-    }
-
-    public int getPosY() {
-        return posY;
-    }
-
     @Override
+    //MODIFIES: this
+    //EFFECTS: converts Position's X and Y values into Json
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("X", posX);
@@ -32,4 +26,11 @@ public class Position implements Writable {
         return json;
     }
 
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
 }

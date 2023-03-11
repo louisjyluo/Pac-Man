@@ -3,8 +3,6 @@ package model;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
-
-import java.io.WriteAbortedException;
 import java.util.ArrayList;
 
 //The class that puts everything together and creates the game itself
@@ -24,6 +22,7 @@ public class PacManGame implements Writable {
     private int powerUpDurationTimer = 0;
     private int pacManTimer = 0;
     private int ghostTimer = 0;
+    private Ghost thatGhost;
 
     //REQUIRES: tickPerSec > 0;
     //MODIFIES: this
@@ -184,11 +183,9 @@ public class PacManGame implements Writable {
                     thisGhost.setLastBody(10,7);
                     thisGhost.setWeakGhost(false);
                     pellets.increaseScoreGhost();
+                    thatGhost = thisGhost;
                     whichGhost = -1;
-                } else if (!thisGhost.getWeak()) {
-                    ended = true;
                 }
-
             }
             powerUpDurationTimer++;
         } else {
@@ -210,6 +207,8 @@ public class PacManGame implements Writable {
                || listOfGhost.get(3).getWeak());
     }
 
+    //MODIFIES: this
+    //EFFECTS: parses the entire game into a Json file
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -221,7 +220,8 @@ public class PacManGame implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    //MODIFIES: this
+    //EFFECTS: parses each ghost into Json
     private JSONArray ghostsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Ghost g : listOfGhost) {
@@ -264,6 +264,14 @@ public class PacManGame implements Writable {
 
     public int getPowerUpDurationTimer() {
         return powerUpDurationTimer;
+    }
+
+    public void setGhostTimer(int timer) {
+        ghostTimer = timer;
+    }
+
+    public int getGhostTimer() {
+        return ghostTimer;
     }
 
 }
