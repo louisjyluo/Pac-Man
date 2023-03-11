@@ -55,7 +55,7 @@ class PacManGameTest {
         }
         assertFalse(game.getGhostTimer() > 5 && !game.isWeakGhost());
         assertTrue(game.getGhostTimer() > 9 && game.isWeakGhost());
-        if(game.getGhostTimer() > 9 && game.isWeakGhost()) {
+        if (game.getGhostTimer() > 9 && game.isWeakGhost()) {
             game.handleGhostMovement();
         }
         assertFalse(game.getGhostTimer() > 9 && game.isWeakGhost());
@@ -134,10 +134,12 @@ class PacManGameTest {
         listOfGhost.get(0).setWeakGhost(true);
         listOfGhost.get(0).setPos(2,1);
         pacMan.setBody(2,1);
-        assertTrue(listOfGhost.get(0).getWeak());
-        if(listOfGhost.get(0).getWeak()) {
-            game.eatWeakGhost();
-            assertFalse(listOfGhost.get(0).getWeak());
+        assertTrue(game.hasCollidedWithGhost());
+        game.hasCollidedWithGhost();
+        game.eatWeakGhost();
+        Ghost thisGhost = game.getThatGhost();
+        if(thisGhost.getWeak()) {
+            assertFalse(thisGhost.getWeak());
         }
         game.eatWeakGhost();
         assertEquals(10 ,listOfGhost.get(0).getPos().getPosX());

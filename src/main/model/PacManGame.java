@@ -75,7 +75,8 @@ public class PacManGame implements Writable {
                 ghost.move();
             }
             ghostTimer = 0;
-        } else if (ghostTimer > 9 && isWeakGhost()) {
+        }
+        if (ghostTimer > 9 && isWeakGhost()) {
             for (Ghost ghost : listOfGhost) {
                 ghost.move();
             }
@@ -178,12 +179,12 @@ public class PacManGame implements Writable {
             if (hasCollidedWithGhost()) {
                 hasCollidedWithGhost();
                 Ghost thisGhost = listOfGhost.get(whichGhost);
+                thatGhost = thisGhost;
                 if (thisGhost.getWeak()) {
                     thisGhost.setPos(10,7);
                     thisGhost.setLastBody(10,7);
                     thisGhost.setWeakGhost(false);
                     pellets.increaseScoreGhost();
-                    thatGhost = thisGhost;
                     whichGhost = -1;
                 }
             }
@@ -272,6 +273,10 @@ public class PacManGame implements Writable {
 
     public int getGhostTimer() {
         return ghostTimer;
+    }
+
+    public Ghost getThatGhost() {
+        return thatGhost;
     }
 
 }
