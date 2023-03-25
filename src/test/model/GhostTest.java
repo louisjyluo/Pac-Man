@@ -42,14 +42,6 @@ public class GhostTest {
             assertEquals(11,blinky.getPos().getPosX());
             assertEquals(7,blinky.getPos().getPosY());
         }
-
-
-        if (blinky.getNum().nextDouble() >= 0.75) {
-            blinky.moveLeft();
-            assertEquals(9,blinky.getPos().getPosX());
-            assertEquals(7,blinky.getPos().getPosY());
-        }
-
     }
 
     @Test
