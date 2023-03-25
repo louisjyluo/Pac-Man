@@ -136,7 +136,7 @@ public class Ghost implements Writable {
     }
 
     //MODIFIES: this
-    //EFFECTS: parses individual ghost into position and boolean Json.
+    //EFFECTS: parses individual ghost into position and boolean Json
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
