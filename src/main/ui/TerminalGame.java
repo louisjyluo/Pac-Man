@@ -109,8 +109,7 @@ public class TerminalGame {
                 loadPacManGame();
                 break;
             case F3:
-                Ghost ghost = new Ghost();
-                game.getListOfGhost().add(ghost);
+                game.addGhosts();
             default:
         }
     }
@@ -181,8 +180,9 @@ public class TerminalGame {
     //MODIFIES: this
     //EFFECTS: draws the walls on the terminal
     private void drawMap() {
-        for (int i = 0; i < game.getMap().makeMap().size(); i++) {
-            drawPosition(game.getMap().makeMap().get(i), TextColor.ANSI.GREEN, 'H');
+        for (int i = 0; i < game.getMap().getWalls().length; i++) {
+            drawBoard(game.getMap().getWalls()[i][1],
+                    game.getMap().getWalls()[i][0], TextColor.ANSI.GREEN, 'H');
         }
     }
 
@@ -255,7 +255,8 @@ public class TerminalGame {
     //EFFECTS: draws all the pellets on the terminal
     private void drawPellets() {
         for (int i = 0; i < game.getPellets().getPellet().length; i++) {
-            drawPosition(game.getPellets().makePellets().get(i), TextColor.ANSI.WHITE, '•');
+            drawBoard(game.getPellets().getPellet()[i][1],
+                    game.getPellets().getPellet()[i][0], TextColor.ANSI.WHITE, '•');
         }
 
     }
@@ -264,9 +265,9 @@ public class TerminalGame {
     //EFFECTS: draws all the powerUps on the terminal
     private void drawPowerUps() {
         for (int i = 0; i < game.getPower().getPowerUps().length; i++) {
-            drawPosition(game.getPower().makePowerUps().get(i), TextColor.ANSI.WHITE, 'o');
+            drawBoard(game.getPower().getPowerUps()[i][1],
+                    game.getPower().getPowerUps()[i][0], TextColor.ANSI.WHITE, 'o');
         }
-
     }
 
     //MODIFIES: this
@@ -281,11 +282,18 @@ public class TerminalGame {
         TextGraphics text = screen.newTextGraphics();
         text.setForegroundColor(color);
         text.putString(pos.getPosX() * 2 + 18, pos.getPosY() + 4, String.valueOf(c));
+    }
 
+    //MODIFIES: this
+    //EFFECTS: the actual method that puts the input on the terminal screen.
+    private void drawBoard(int posX, int posY, TextColor color, char c) {
+        TextGraphics text = screen.newTextGraphics();
+        text.setForegroundColor(color);
+        text.putString(posX * 2 + 18,posY + 4, String.valueOf(c));
     }
 
     // MODIFIES: this
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the game to file
     private void savePacManGame() {
         try {
             jsonWriter.open();
@@ -298,7 +306,7 @@ public class TerminalGame {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads game from file
     private void loadPacManGame() {
         try {
             game = jsonReader.read();

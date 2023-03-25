@@ -18,11 +18,11 @@ public class WallsTest {
 
     @Test
     void makeMapTest(){
-        ArrayList<Position> walls = map.makeMap();
-        assertEquals(1, walls.get(0).getPosX());
-        assertEquals(0, walls.get(0).getPosY());
-        assertEquals(2, walls.get(1).getPosX());
-        assertEquals(0, walls.get(1).getPosY());
+        int[][] walls = map.getWalls();
+        assertEquals(1, walls[0][1]);
+        assertEquals(0, walls[0][0]);
+        assertEquals(2, walls[1][1]);
+        assertEquals(0, walls[1][0]);
     }
 
 }

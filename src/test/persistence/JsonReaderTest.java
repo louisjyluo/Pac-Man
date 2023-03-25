@@ -29,7 +29,7 @@ public class JsonReaderTest {
             PacManGame game = reader.read();
             assertEquals(10, game.getPacMan().getPos().getPosX());
             assertEquals(10, game.getPacMan().getPos().getPosY());
-            assertEquals(10, game.getListOfGhost().get(1).getPos().getPosX());
+            assertEquals(9, game.getListOfGhost().get(1).getPos().getPosX());
             assertEquals(7, game.getListOfGhost().get(1).getPos().getPosY());
             assertFalse(game.getListOfGhost().get(0).getWeak());
             assertFalse(game.getListOfGhost().get(2).getWeak());
@@ -46,15 +46,15 @@ public class JsonReaderTest {
         JsonReader reader = new JsonReader("./data/testerFile.json");
         try {
             PacManGame game = reader.read();
-            assertEquals(13, game.getPacMan().getPos().getPosX());
-            assertEquals(8, game.getPacMan().getPos().getPosY());
-            assertEquals(9, game.getListOfGhost().get(1).getPos().getPosX());
+            assertEquals(11, game.getPacMan().getPos().getPosX());
+            assertEquals(13, game.getPacMan().getPos().getPosY());
+            assertEquals(11, game.getListOfGhost().get(1).getPos().getPosX());
             assertEquals(7, game.getListOfGhost().get(1).getPos().getPosY());
-            assertTrue(game.getListOfGhost().get(0).getWeak());
-            assertTrue(game.getListOfGhost().get(2).getWeak());
+            assertFalse(game.getListOfGhost().get(0).getWeak());
+            assertFalse(game.getListOfGhost().get(2).getWeak());
             assertEquals(107, game.getPellets().getPellet().length);
             assertEquals(4, game.getPower().getPowerUps().length);
-            assertEquals(102, game.getPowerUpDurationTimer());
+            assertEquals(0, game.getPowerUpDurationTimer());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

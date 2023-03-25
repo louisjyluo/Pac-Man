@@ -2,7 +2,10 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import persistence.JsonWriter;
 import persistence.Writable;
+
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 //The class that puts everything together and creates the game itself
@@ -16,6 +19,8 @@ public class PacManGame implements Writable {
     private final Pellets pellets;
     private final Walls map;
     private final PowerUps power;
+    private final int width = 650;
+    private final int length = 600;
     private Boolean ended = false;
     private final int tickPerSec = 50;
     private int whichGhost = -1;
@@ -53,7 +58,6 @@ public class PacManGame implements Writable {
         }
         eatPowerUpToWeakenGhost();
         checkEndGame();
-
     }
 
     //MODIFIES: this
@@ -114,13 +118,12 @@ public class PacManGame implements Writable {
         }
     }
 
-
     //MODIFIES: this
     //EFFECTS: if pacMan eats a powerUp, returns true.
     public boolean isPowerUp() {
         for (int i = 0; i < power.getPowerUps().length; i++) {
-            if (pacMan.getPos().getPosX() == power.makePowerUps().get(i).getPosX()
-                    && pacMan.getPos().getPosY() == power.makePowerUps().get(i).getPosY()) {
+            if (pacMan.getPos().getPosX() == power.getPowerUps()[i][1]
+                    && pacMan.getPos().getPosY() == power.getPowerUps()[i][0]) {
 
                 return true;
             }
@@ -132,8 +135,8 @@ public class PacManGame implements Writable {
     //EFFECTS: returns true if pac-man is on a position that contains a pellet.
     public boolean isPellet() {
         for (int i = 0; i < pellets.getPellet().length; i++) {
-            if (pacMan.getPos().getPosX() == pellets.makePellets().get(i).getPosX()
-                    && pacMan.getPos().getPosY() == pellets.makePellets().get(i).getPosY()) {
+            if (pacMan.getPos().getPosX() == pellets.getPellet()[i][1]
+                    && pacMan.getPos().getPosY() == pellets.getPellet()[i][0]) {
                 return true;
             }
         }
@@ -145,7 +148,7 @@ public class PacManGame implements Writable {
     // map by setting all pellets to position 32,32.
     public boolean noMorePellets() {
         for (int i = 0; i < pellets.getPellet().length; i++) {
-            if (!(pellets.getMap().get(i).getPosX() == 32)) {
+            if (!(pellets.getPellet()[i][1] == 32)) {
                 return false;
             }
         }
@@ -175,11 +178,14 @@ public class PacManGame implements Writable {
     //MODIFIES: this
     //EFFECTS: handles PacMan eating weak ghosts, and handles the duration of the powerUp.
     public void eatWeakGhost() {
-        if (powerUpDurationTimer < 350) {
+        if (powerUpDurationTimer < 400) {
             if (hasCollidedWithGhost()) {
                 hasCollidedWithGhost();
                 Ghost thisGhost = listOfGhost.get(whichGhost);
                 thatGhost = thisGhost;
+                if (!thisGhost.getWeak()) {
+                    ended = true;
+                }
                 resetGhost();
             }
             powerUpDurationTimer++;
@@ -214,6 +220,13 @@ public class PacManGame implements Writable {
             }
         }
         return false;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds a new ghost into the game
+    public void addGhosts() {
+        Ghost ghost = new Ghost();
+        listOfGhost.add(ghost);
     }
 
     //MODIFIES: this
@@ -285,6 +298,14 @@ public class PacManGame implements Writable {
 
     public Ghost getThatGhost() {
         return thatGhost;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
 }

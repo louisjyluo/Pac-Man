@@ -26,18 +26,18 @@ class PacManGameTest {
         game.tick();
         assertFalse(game.isPellet());
         assertFalse(game.noMorePellets());
-        assertNotEquals(32,game.getPellets().getMap().get(0).getPosX());
-        assertNotEquals(32,game.getPellets().getMap().get(0).getPosY());
+        assertNotEquals(32,game.getPellets().getPellet()[0][1]);
+        assertNotEquals(32,game.getPellets().getPellet()[0][0]);
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 game.getPellets().eatPellet(i,j);
             }
         }
-        assertEquals(32,game.getPellets().getMap().get(0).getPosX());
-        assertEquals(32,game.getPellets().getMap().get(3).getPosX());
-        assertEquals(32,game.getPellets().getMap().get(3).getPosY());
-        assertEquals(32,game.getPellets().getMap().get(14).getPosX());
-        assertEquals(32,game.getPellets().getMap().get(14).getPosY());
+        assertEquals(32,game.getPellets().getPellet()[0][1]);
+        assertEquals(32,game.getPellets().getPellet()[3][1]);
+        assertEquals(32,game.getPellets().getPellet()[3][0]);
+        assertEquals(32,game.getPellets().getPellet()[14][1]);
+        assertEquals(32,game.getPellets().getPellet()[14][0]);
         game.tick();
         assertTrue(game.noMorePellets());
         assertTrue(game.isEnded());
@@ -127,8 +127,8 @@ class PacManGameTest {
         assertTrue(game.isPowerUp());
         game.tick();
         assertFalse(game.isPowerUp());
-        assertEquals(33,game.getPower().getMap().get(0).getPosX());
-        assertEquals(33,game.getPower().getMap().get(0).getPosY());
+        assertEquals(32,game.getPower().getPowerUps()[0][1]);
+        assertEquals(32,game.getPower().getPowerUps()[0][0]);
         pacMan.setBody(4,1);
         assertFalse(game.isPowerUp());
         game.tick();
@@ -142,8 +142,8 @@ class PacManGameTest {
         game.tick();
         assertFalse(game.isPowerUp());
         pacMan.setBody(18, 1);
-        if (pacMan.getPos().getPosX() == game.getPower().makePowerUps().get(1).getPosX()
-                && pacMan.getPos().getPosY() == game.getPower().makePowerUps().get(1).getPosY()) {
+        if (pacMan.getPos().getPosX() == game.getPower().getPowerUps()[1][1]
+                && pacMan.getPos().getPosY() == game.getPower().getPowerUps()[1][0]) {
             assertTrue(game.isPowerUp());
             game.tick();
             assertFalse(game.isPowerUp());
@@ -153,14 +153,14 @@ class PacManGameTest {
                 game.getPower().eatPowerUp(i,j);
             }
         }
-        assertEquals(33,game.getPower().getMap().get(0).getPosX());
-        assertEquals(33,game.getPower().getMap().get(1).getPosX());
-        assertEquals(33,game.getPower().getMap().get(2).getPosX());
-        assertEquals(33,game.getPower().getMap().get(3).getPosX());
-        assertEquals(33,game.getPower().getMap().get(0).getPosY());
-        assertEquals(33,game.getPower().getMap().get(1).getPosY());
-        assertEquals(33,game.getPower().getMap().get(2).getPosY());
-        assertEquals(33,game.getPower().getMap().get(3).getPosY());
+        assertEquals(32,game.getPower().getPowerUps()[0][1]);
+        assertEquals(32,game.getPower().getPowerUps()[1][1]);
+        assertEquals(32,game.getPower().getPowerUps()[2][1]);
+        assertEquals(32,game.getPower().getPowerUps()[3][1]);
+        assertEquals(32,game.getPower().getPowerUps()[0][0]);
+        assertEquals(32,game.getPower().getPowerUps()[1][0]);
+        assertEquals(32,game.getPower().getPowerUps()[2][0]);
+        assertEquals(32,game.getPower().getPowerUps()[3][0]);
     }
 
     @Test
@@ -203,11 +203,25 @@ class PacManGameTest {
     }
 
     @Test
+    void eatGhostOnceThenDiesTest() {
+        listOfGhost.get(0).setWeakGhost(true);
+        listOfGhost.get(0).setPos(2,1);
+        pacMan.setBody(2,1);
+        game.eatWeakGhost();
+        assertEquals(10 ,listOfGhost.get(0).getPos().getPosX());
+        assertEquals(7,listOfGhost.get(0).getPos().getPosY());
+        assertFalse(listOfGhost.get(0).getWeak());
+        listOfGhost.get(0).setPos(2,1);
+        game.eatWeakGhost();
+        assertTrue(game.isEnded());
+    }
+
+    @Test
     void powerUpTimerTimeOutTest() {
         listOfGhost.get(0).setWeakGhost(true);
         listOfGhost.get(0).setPos(2,1);
         pacMan.setBody(10,10);
-        for(int i = 0; i < 350; i++){
+        for(int i = 0; i < 400; i++){
             game.eatWeakGhost();
         }
         assertTrue(listOfGhost.get(0).getWeak());
@@ -362,8 +376,8 @@ class PacManGameTest {
         assertEquals(new PacMan().getPos().getPosX(), game.getPacMan().getPos().getPosX());
         assertEquals(new PacMan().getPos().getPosY(), game.getPacMan().getPos().getPosY());
         assertEquals(50, game.getTickPerSec());
-        assertEquals(165,game.getMap().makeMap().size());
-        assertEquals(107,game.getPellets().makePellets().size());
+        assertEquals(165,game.getMap().getWalls().length);
+        assertEquals(106,game.getPellets().getPellet().length);
     }
 
 }

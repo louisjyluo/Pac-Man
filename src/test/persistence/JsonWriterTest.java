@@ -29,8 +29,8 @@ public class JsonWriterTest {
     void testWriterEmptyFile() {
         try {
             PacManGame game = new PacManGame();
-            game.getPower().makePowerUps();
-            game.getPellets().makePellets();
+            game.getPower().getPowerUps();
+            game.getPellets().getPellet();
             JsonWriter writer = new JsonWriter("./data/testWriterBeginningOfGame.json");
             writer.open();
             writer.write(game);
@@ -48,8 +48,8 @@ public class JsonWriterTest {
     void testWriterGeneralWorkroom() {
         try {
             PacManGame game = new PacManGame();
-            game.getPower().makePowerUps();
-            game.getPellets().makePellets();
+            game.getPower().getPowerUps();
+            game.getPellets().getPellet();
             game.getPacMan().setBody(10,9);
             game.getListOfGhost().get(0).setPos(10,5);
             game.getListOfGhost().get(0).setWeakGhost(true);

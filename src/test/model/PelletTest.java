@@ -18,11 +18,11 @@ public class PelletTest {
 
     @Test
     void makeMapTest(){
-        ArrayList<Position> walls = pellets.makePellets();
-        assertEquals(3, walls.get(0).getPosX());
-        assertEquals(1, walls.get(0).getPosY());
-        assertEquals(4, walls.get(1).getPosX());
-        assertEquals(1, walls.get(1).getPosY());
+        int[][] walls = pellets.getPellet();
+        assertEquals(3, walls[0][1]);
+        assertEquals(1, walls[0][0]);
+        assertEquals(4, walls[1][1]);
+        assertEquals(1, walls[1][0]);
     }
 
     @Test
@@ -49,15 +49,14 @@ public class PelletTest {
 
     @Test
     void eatPelletsTest(){
-        pellets.makePellets();
         pellets.eatPellet(3,1);
-        int x = pellets.getMap().get(0).getPosX();
-        int y = pellets.getMap().get(0).getPosY();
+        int x = pellets.getPellet()[0][1];
+        int y = pellets.getPellet()[0][0];
         assertEquals(32, x);
         assertEquals(32, y);
         pellets.eatPellet(8,1);
-        x = pellets.getMap().get(5).getPosX();
-        y = pellets.getMap().get(5).getPosY();
+        x = pellets.getPellet()[5][1];
+        y = pellets.getPellet()[5][0];
         assertEquals(32, x);
         assertEquals(32, y);
 

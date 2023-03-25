@@ -58,7 +58,10 @@ public class JsonReader {
     private void addGhosts(PacManGame game, JSONObject jsonObject) {
         JSONArray listOfGhost = jsonObject.getJSONArray("ghosts");
         ArrayList<Ghost> ghosts = game.getListOfGhost();
-        for (int i = 0; i < listOfGhost.length(); i++) {
+        for (int i = 0; i < listOfGhost.length() - 4; i++) {
+            game.addGhosts();
+        }
+        for (int i = 0; i < ghosts.size(); i++) {
             Ghost ghost = ghosts.get(i);
             JSONObject singleGhost = listOfGhost.getJSONObject(i);
             int posX = singleGhost.getJSONObject("position").getInt("X");
@@ -92,35 +95,33 @@ public class JsonReader {
     // MODIFIES: game
     // EFFECTS: parses pellets from JSON object and adds it to workroom
     private void addPellets(PacManGame game, JSONObject jsonObject) {
-        ArrayList<Position> map = new ArrayList<>();
+        int[][] map = game.getPellets().getPellet();
         JSONObject pellets = jsonObject.getJSONObject("pellet");
         int score = pellets.getInt("score");
         game.getPellets().setScore(score);
-        JSONArray listOfPos = pellets.getJSONArray("pellet");
-        for (int i = 0; i < listOfPos.length(); i++) {
-            JSONObject pos = listOfPos.getJSONObject(i);
-            int x = pos.getInt("X");
-            int y = pos.getInt("Y");
-            Position p = new Position(x, y);
-            map.add(p);
+        JSONArray listOfPosX = pellets.getJSONArray("pelletX");
+        JSONArray listOfPosY = pellets.getJSONArray("pelletY");
+        for (int i = 0; i < listOfPosX.length(); i++) {
+            int posX = listOfPosX.getInt(i);
+            int posY = listOfPosY.getInt(i);
+            map[i][0] = posY;
+            map[i][1] = posX;
         }
-        game.getPellets().setMap(map);
     }
 
     // MODIFIES: game
     // EFFECTS: parses powerUp from JSON object and adds it to workroom
     private void addPowerUp(PacManGame game, JSONObject jsonObject) {
+        int[][] map = game.getPower().getPowerUps();
         JSONObject powerUp = jsonObject.getJSONObject("power up");
-        JSONArray power = powerUp.getJSONArray("power ups");
-        ArrayList<Position> map = new ArrayList<>();
-        for (int i = 0; i < power.length(); i++) {
-            JSONObject pos = power.getJSONObject(i);
-            int x = pos.getInt("X");
-            int y = pos.getInt("Y");
-            Position p = new Position(x, y);
-            map.add(p);
+        JSONArray powerX = powerUp.getJSONArray("powerUpX");
+        JSONArray powerY = powerUp.getJSONArray("powerUpY");
+        for (int i = 0; i < powerX.length(); i++) {
+            int x = powerX.getInt(i);
+            int y = powerY.getInt(i);
+            map[i][1] = x;
+            map[i][0] = y;
         }
-        game.getPower().setMap(map);
     }
 }
 

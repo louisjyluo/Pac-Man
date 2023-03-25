@@ -3,12 +3,17 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.awt.*;
+
 //Pacman class - represents PacMan, have move() method, wall collision, direction.
 public class PacMan implements Writable {
     private Position body;
     private Direction dir;
     private Position lastBody;
     private final Walls walls;
+    public static final Color COLOR = new Color(255, 255, 51);
+    public static final int SIZE_X = 30;
+    public static final int SIZE_Y = 30;
 
     //REQUIRES: starting position must be not a wall, inside the ghost box, and within the map.
     //MODIFIES: this
@@ -82,8 +87,8 @@ public class PacMan implements Writable {
     //EFFECTS: returns true if a wall occupies the space below, and also if the ghost gate is below it.
     public boolean cantMoveDown() {
         for (int i = 0; i < walls.getWalls().length; i++) {
-            if (body.getPosY() + 1 == walls.makeMap().get(i).getPosY()
-                    && body.getPosX() == walls.makeMap().get(i).getPosX()) {
+            if (body.getPosY() + 1 == walls.getWalls()[i][0]
+                    && body.getPosX() == walls.getWalls()[i][1]) {
                 return true;
             }
         }
@@ -97,8 +102,8 @@ public class PacMan implements Writable {
     //EFFECTS: returns true if a wall occupies the space to the left.
     public boolean cantMoveLeft() {
         for (int i = 0; i < walls.getWalls().length; i++) {
-            if (body.getPosX() - 1 == walls.makeMap().get(i).getPosX()
-                    && body.getPosY() == walls.makeMap().get(i).getPosY()) {
+            if (body.getPosX() - 1 == walls.getWalls()[i][1]
+                    && body.getPosY() == walls.getWalls()[i][0]) {
                 return true;
             }
         }
@@ -109,8 +114,8 @@ public class PacMan implements Writable {
     //EFFECTS: returns true if a wall occupies the space to the right.
     public boolean cantMoveRight() {
         for (int i = 0; i < walls.getWalls().length; i++) {
-            if (body.getPosX() + 1 == walls.makeMap().get(i).getPosX()
-                    && body.getPosY() == walls.makeMap().get(i).getPosY()) {
+            if (body.getPosX() + 1 == walls.getWalls()[i][1]
+                    && body.getPosY() == walls.getWalls()[i][0]) {
                 return true;
             }
         }
@@ -121,8 +126,8 @@ public class PacMan implements Writable {
     //EFFECTS: returns true if a wall occupies the space above.
     public boolean cantMoveUp() {
         for (int i = 0; i < walls.getWalls().length; i++) {
-            if (body.getPosY() - 1 == walls.makeMap().get(i).getPosY()
-                    && body.getPosX() == walls.makeMap().get(i).getPosX()) {
+            if (body.getPosY() - 1 == walls.getWalls()[i][0]
+                    && body.getPosX() == walls.getWalls()[i][1]) {
                 return true;
             }
         }

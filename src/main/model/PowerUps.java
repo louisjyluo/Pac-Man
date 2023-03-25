@@ -8,32 +8,16 @@ import java.util.ArrayList;
 
 //Represents the power ups that can be collected by PacMan for a boost.
 public class PowerUps implements Writable {
-    private ArrayList<Position> map;
     private final int[][] powerUps = {{1,2},{1,18},{13, 4},{13,16}};
-
-    //MODIFIES: this
-    //EFFECTS: sets up the position of where all the power ups will be.
-    public PowerUps() {
-        map = new ArrayList<>();
-    }
-
-    //MODIFIES: this
-    //EFFECTS: puts the powerUps on the map.
-    public ArrayList<Position> makePowerUps() {
-        for (int i = 0; i < powerUps.length; i++) {
-            Position pixel = new Position(powerUps[i][1], powerUps[i][0]);
-            map.add(pixel);
-        }
-        return map;
-    }
 
     //MODIFIES: this
     //EFFECTS: When PacMan reaches a powerUp, removes it off the map.
     public void eatPowerUp(int posX, int posY) {
         for (int i = 0;  i < powerUps.length; i++) {
-            if (map.get(i).getPosX() == posX
-                    && map.get(i).getPosY() == posY) {
-                map.set(i, new Position(33,33));
+            if (powerUps[i][1] == posX
+                    && powerUps[i][0] == posY) {
+                powerUps[i][1] = 32;
+                powerUps[i][0] = 32;
                 break;
             }
 
@@ -45,26 +29,29 @@ public class PowerUps implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("power ups", pupToJson());
+        json.put("powerUpX", pupXToJson());
+        json.put("powerUpY", pupYToJson());
         return json;
     }
 
     //MODIFIES: this
     //EFFECTS: converts each power Up array value into Position Json
-    private JSONArray pupToJson() {
+    private JSONArray pupXToJson() {
         JSONArray jsonArray = new JSONArray();
         for (int w = 0; w < powerUps.length; w++) {
-            jsonArray.put(map.get(w).toJson());
+            jsonArray.put(powerUps[w][1]);
         }
         return jsonArray;
     }
 
-    public void setMap(ArrayList<Position> map) {
-        this.map = map;
-    }
-
-    public ArrayList<Position> getMap() {
-        return map;
+    //MODIFIES: this
+    //EFFECTS: converts each power Up array value into Position Json
+    private JSONArray pupYToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (int w = 0; w < powerUps.length; w++) {
+            jsonArray.put(powerUps[w][0]);
+        }
+        return jsonArray;
     }
 
     public int[][] getPowerUps() {

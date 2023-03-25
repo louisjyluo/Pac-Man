@@ -10,12 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 //Test for PowerUp Class
 public class PowerUpsTest {
     private PowerUps pow;
-    private ArrayList<Position> map;
 
     @BeforeEach
     void runBefore() {
         pow = new PowerUps();
-        map = pow.makePowerUps();
     }
 
     @Test
@@ -24,36 +22,27 @@ public class PowerUpsTest {
     }
 
     @Test
-    void makePowerUpTest() {
-        assertEquals(4, map.size());
-        int posX = map.get(0).getPosX();
-        int posY = map.get(0).getPosY();
-        assertEquals(2, posX);
-        assertEquals(1, posY);
-    }
-
-    @Test
     void eatPowerUpTest() {
+        pow.eatPowerUp(4,13);
+        int posX = pow.getPowerUps()[2][1];
+        int posY = pow.getPowerUps()[2][0];
+        assertEquals(32, posX);
+        assertEquals(32, posY);
+        pow.eatPowerUp(18,1);
+         posX = pow.getPowerUps()[1][1];
+         posY = pow.getPowerUps()[1][0];
+        assertEquals(32, posX);
+        assertEquals(32, posY);
         pow.eatPowerUp(2,1);
-        int posX = map.get(0).getPosX();
-        int posY = map.get(0).getPosY();
-        assertEquals(33, posX);
-        assertEquals(33, posY);
-        pow.eatPowerUp(18,1);
-         posX = map.get(1).getPosX();
-         posY = map.get(1).getPosY();
-        assertEquals(33, posX);
-        assertEquals(33, posY);
-        pow.eatPowerUp(18,1);
-         posX = map.get(2).getPosX();
-         posY = map.get(2).getPosY();
-        assertEquals(4, posX);
-        assertEquals(13, posY);
+         posX = pow.getPowerUps()[1][1];
+         posY = pow.getPowerUps()[1][0];
+        assertEquals(32, posX);
+        assertEquals(32, posY);
         pow.eatPowerUp(16,13);
-         posX = map.get(3).getPosX();
-         posY = map.get(3).getPosY();
-        assertEquals(33, posX);
-        assertEquals(33, posY);
+         posX = pow.getPowerUps()[3][1];
+         posY = pow.getPowerUps()[3][0];
+        assertEquals(32, posX);
+        assertEquals(32, posY);
 
 
     }

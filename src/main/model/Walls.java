@@ -1,12 +1,5 @@
 package model;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import persistence.Writable;
-
-import java.io.PipedOutputStream;
-import java.util.ArrayList;
-
 //Represents all the walls in the map
 public class Walls {
     private int[][] walls  = {
@@ -22,20 +15,6 @@ public class Walls {
             {12,19}, {13,1},{13,2},{13,3},{13,10},{13,17},{13,18},{13,19},{14,1},{14,2},{14,3},{14,4},{14,5},{14,6},
             {14,7},{14,8},{14,9},{14,10},{14,11},{14,12},{14,13},{14,14},{14,15},{14,16},{14,17},{14,18},{14,19},
     };
-
-
-
-
-    //MODIFIES: this
-    //EFFECTS: creates the walls by taking all the walls coordinates and turning them into positions.
-    public ArrayList<Position> makeMap() {
-        ArrayList<Position> map = new ArrayList<>();
-        for (int i = 0; i < walls.length; i++) {
-            Position pixel = new Position(walls[i][1], walls[i][0]);
-            map.add(pixel);
-        }
-        return map;
-    }
 
     public int[][] getWalls() {
         return walls;

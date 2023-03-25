@@ -3,6 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.awt.*;
 import java.util.Random;
 
 //Class that represents the ghosts in PacMan
@@ -12,6 +13,8 @@ public class Ghost implements Writable {
     private Walls walls;
     private Random num;
     private Boolean weak;
+    public static final int SIZE_X = 30;
+    public static final int SIZE_Y = 30;
 
     //REQUIRES: starting position must be inside the ghost box.
     //MODIFIES: this
@@ -88,8 +91,8 @@ public class Ghost implements Writable {
     //EFFECTS: return true if there is a wall above the ghost
     public boolean cantMoveDown() {
         for (int i = 0; i < walls.getWalls().length; i++) {
-            if (body.getPosY() + 1 == walls.makeMap().get(i).getPosY()
-                    && body.getPosX() == walls.makeMap().get(i).getPosX()) {
+            if (body.getPosY() + 1 == walls.getWalls()[i][0]
+                    && body.getPosX() == walls.getWalls()[i][1]) {
                 return true;
             }
         }
@@ -100,8 +103,8 @@ public class Ghost implements Writable {
     //EFFECTS: return true if there is a wall left of the ghost
     public boolean cantMoveLeft() {
         for (int i = 0; i < walls.getWalls().length; i++) {
-            if (body.getPosX() - 1 == walls.makeMap().get(i).getPosX()
-                    && body.getPosY() == walls.makeMap().get(i).getPosY()) {
+            if (body.getPosX() - 1 == walls.getWalls()[i][1]
+                    && body.getPosY() == walls.getWalls()[i][0]) {
                 return true;
             }
         }
@@ -112,8 +115,8 @@ public class Ghost implements Writable {
     //EFFECTS: return true if there is a wall right of the ghost
     public boolean cantMoveRight() {
         for (int i = 0; i < walls.getWalls().length; i++) {
-            if (body.getPosX() + 1 == walls.makeMap().get(i).getPosX()
-                    && body.getPosY() == walls.makeMap().get(i).getPosY()) {
+            if (body.getPosX() + 1 == walls.getWalls()[i][1]
+                    && body.getPosY() == walls.getWalls()[i][0]) {
                 return true;
             }
         }
@@ -124,8 +127,8 @@ public class Ghost implements Writable {
     //EFFECTS: return true if there is a wall below the ghost
     public boolean cantMoveUp() {
         for (int i = 0; i < walls.getWalls().length; i++) {
-            if (body.getPosY() - 1 == walls.makeMap().get(i).getPosY()
-                    && body.getPosX() == walls.makeMap().get(i).getPosX()) {
+            if (body.getPosY() - 1 == walls.getWalls()[i][0]
+                    && body.getPosX() == walls.getWalls()[i][1]) {
                 return true;
             }
         }
