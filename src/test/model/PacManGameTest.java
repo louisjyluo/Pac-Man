@@ -366,6 +366,14 @@ class PacManGameTest {
 
     }
 
+    @Test
+    void addGhostTest() {
+        game.addGhosts();
+        game.addGhosts();
+        game.addGhosts();
+        assertEquals(7, game.getListOfGhost().size());
+    }
+
 
     @Test
     void gettersTest() {
@@ -378,6 +386,8 @@ class PacManGameTest {
         assertEquals(50, game.getTickPerSec());
         assertEquals(165,game.getMap().getWalls().length);
         assertEquals(106,game.getPellets().getPellet().length);
+        assertEquals(650, game.getWidth());
+        assertEquals(600, game.getLength());
     }
 
 }

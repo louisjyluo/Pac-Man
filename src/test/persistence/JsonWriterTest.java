@@ -66,7 +66,7 @@ public class JsonWriterTest {
             assertEquals(5, game.getListOfGhost().get(0).getPos().getPosY());
             assertTrue(game.getListOfGhost().get(0).getWeak());
             assertFalse(game.getListOfGhost().get(2).getWeak());
-            assertEquals(107, game.getPellets().getPellet().length);
+            assertEquals(106, game.getPellets().getPellet().length);
             assertEquals(4, game.getPower().getPowerUps().length);
             assertEquals(0, game.getPowerUpDurationTimer());
 
