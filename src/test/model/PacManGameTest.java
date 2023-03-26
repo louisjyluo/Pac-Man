@@ -52,6 +52,7 @@ class PacManGameTest {
         assertEquals(7, listOfGhost.get(1).getPos().getPosY());
         assertEquals(10, listOfGhost.get(2).getPos().getPosX());
         assertEquals(7, listOfGhost.get(2).getPos().getPosY());
+        assertEquals(0, game.getPowerUpDurationTimer());
         for (int i = 0; i < game.getPellets().getPellet().length; i++) {
             assertNotEquals(32, game.getPellets().getPellet()[i][1]);
             assertNotEquals(32, game.getPellets().getPellet()[i][0]);
@@ -72,7 +73,7 @@ class PacManGameTest {
         assertEquals(10, blinky.getPos().getPosX());
         assertEquals(7, blinky.getPos().getPosY());
         blinky.setPos(10,10);
-        game.checkEndGame();
+        game.eatWeakGhost();
         assertEquals(2, game.getLives());
         blinky.setPos(10,10);
         game.eatWeakGhost();
@@ -86,7 +87,7 @@ class PacManGameTest {
         assertEquals(10, blinky.getPos().getPosX());
         assertEquals(7, blinky.getPos().getPosY());
         blinky.setPos(10,10);
-        game.checkEndGame();
+        game.eatWeakGhost();
         assertEquals(0, game.getLives());
         game.tick();
         assertTrue(game.isEnded());
@@ -364,53 +365,36 @@ class PacManGameTest {
 
     @Test
     void collisionWithGhostTest() {
-        for (int i = 0; i < listOfGhost.size(); i++) {
-            listOfGhost.get(i).setPos(5,5);
-            pacMan.setBody(5,5);
-            listOfGhost.get(i).setLastBody(5,4);
-            pacMan.setLastBody(6,5);
-            assertTrue(game.hasCollidedWithGhost());
-            game.tick();
-            if(game.hasCollidedWithGhost()) {
-                assertTrue(game.isEnded());
-            }
-            game.tick();
-            if(game.hasCollidedWithGhost()) {
-                assertTrue(game.isEnded());
-            }
-            game.tick();
-            if(game.hasCollidedWithGhost()) {
-                assertTrue(game.isEnded());
-            }
-            game.tick();
-            if(game.hasCollidedWithGhost()) {
-                assertTrue(game.isEnded());
-            }
-            game.tick();
-            if(game.hasCollidedWithGhost()) {
-                assertTrue(game.isEnded());
-            }
-            game.tick();
-            if(game.hasCollidedWithGhost()) {
-                assertTrue(game.isEnded());
-            }
-            game.tick();
-            if(game.hasCollidedWithGhost()) {
-                assertTrue(game.isEnded());
-            }
-
-            listOfGhost.get(i).setPos(5,6);
-            pacMan.setBody(5,5);
-            listOfGhost.get(i).setLastBody(5,5);
-            pacMan.setLastBody(4,5);
-            assertTrue(game.hasCollidedWithGhost());
-            listOfGhost.get(i).setPos(9,7);
-            pacMan.setBody(5,4);
-            listOfGhost.get(i).setLastBody(8,7);
-            pacMan.setLastBody(4,4);
-            assertFalse(game.hasCollidedWithGhost());
-        }
-
+        listOfGhost.get(0).setPos(5,5);
+        pacMan.setBody(5,5);
+        listOfGhost.get(0).setLastBody(5,4);
+        pacMan.setLastBody(6,5);
+        assertTrue(game.hasCollidedWithGhost());
+        game.eatWeakGhost();
+        assertEquals(2, game.getLives());
+        listOfGhost.get(0).setPos(5,5);
+        pacMan.setBody(5,5);
+        listOfGhost.get(0).setLastBody(5,4);
+        pacMan.setLastBody(6,5);
+        game.eatWeakGhost();
+        assertEquals(1, game.getLives());
+        listOfGhost.get(0).setPos(5,5);
+        pacMan.setBody(5,5);
+        listOfGhost.get(0).setLastBody(5,4);
+        pacMan.setLastBody(6,5);
+        game.eatWeakGhost();
+        game.checkEndGame();
+        assertTrue(game.isEnded());
+        listOfGhost.get(0).setPos(5,6);
+        pacMan.setBody(5,5);
+        listOfGhost.get(0).setLastBody(5,5);
+        pacMan.setLastBody(4,5);
+        assertTrue(game.hasCollidedWithGhost());
+        listOfGhost.get(0).setPos(9,7);
+        pacMan.setBody(5,4);
+        listOfGhost.get(0).setLastBody(8,7);
+        pacMan.setLastBody(4,4);
+        assertFalse(game.hasCollidedWithGhost());
     }
 
     @Test

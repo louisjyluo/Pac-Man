@@ -4,7 +4,6 @@ import model.PacManGame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.module.ResolvedModule;
 
 import static java.awt.Font.BOLD;
 

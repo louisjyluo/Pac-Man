@@ -64,6 +64,7 @@ public class PacManGame implements Writable {
         pacMan.setBody(10,10);
         pacMan.setLastBody(10,10);
         pacMan.setDirection(Direction.UP);
+        powerUpDurationTimer = 0;
         for (Ghost ghost : listOfGhost) {
             ghost.setWeakGhost(false);
             ghost.setLastBody(10,7);
@@ -130,11 +131,10 @@ public class PacManGame implements Writable {
         if (lives > 0) {
             if (isWeakGhost()) {
                 eatWeakGhost();
-
             } else if (hasCollidedWithGhost() && thatGhost == null
                     || hasCollidedWithGhost() && !thatGhost.getWeak()) {
-                lives--;
                 resetGame();
+                lives--;
             }
 
             if (noMorePellets()) {
@@ -211,7 +211,8 @@ public class PacManGame implements Writable {
                 Ghost thisGhost = listOfGhost.get(whichGhost);
                 thatGhost = thisGhost;
                 if (!thisGhost.getWeak()) {
-                    checkEndGame();
+                    resetGame();
+                    lives--;
                 }
                 resetGhost();
             }
