@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 //Represents the power ups that can be collected by PacMan for a boost.
 public class PowerUps implements Writable {
-    private final int[][] powerUps = {{1,2},{1,18},{13, 4},{13,16}};
+    private int[][] powerUps = {{1,2},{1,18},{13, 4},{13,16}};
+
+    private int[][] backUp = {{1,2},{1,18},{13, 4},{13,16}};
 
     //MODIFIES: this
     //EFFECTS: When PacMan reaches a powerUp, removes it off the map.
@@ -56,5 +58,9 @@ public class PowerUps implements Writable {
 
     public int[][] getPowerUps() {
         return powerUps;
+    }
+
+    public int[][] getBackUp() {
+        return backUp;
     }
 }

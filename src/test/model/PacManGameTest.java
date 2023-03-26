@@ -22,27 +22,74 @@ class PacManGameTest {
 
     @Test
     void isPelletTest() {
+        pacMan.setBody(12,10);
         assertTrue(game.isPellet());
         game.tick();
         assertFalse(game.isPellet());
         assertFalse(game.noMorePellets());
         assertNotEquals(32,game.getPellets().getPellet()[0][1]);
         assertNotEquals(32,game.getPellets().getPellet()[0][0]);
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                game.getPellets().eatPellet(i,j);
-            }
+        for (int i = 0; i < game.getPellets().getPellet().length; i++) {
+            game.getPellets().getPellet()[i][1] = 32;
+            game.getPellets().getPellet()[i][0] = 32;
         }
         assertEquals(32,game.getPellets().getPellet()[0][1]);
         assertEquals(32,game.getPellets().getPellet()[3][1]);
         assertEquals(32,game.getPellets().getPellet()[3][0]);
         assertEquals(32,game.getPellets().getPellet()[14][1]);
         assertEquals(32,game.getPellets().getPellet()[14][0]);
-        game.tick();
         assertTrue(game.noMorePellets());
+    }
+
+    @Test
+    void resetGameTest() {
+        game.resetGame();
+        assertEquals(10, pacMan.getPos().getPosX());
+        assertEquals(10, pacMan.getPos().getPosY());
+        assertEquals(10, listOfGhost.get(0).getPos().getPosX());
+        assertEquals(7, listOfGhost.get(0).getPos().getPosY());
+        assertEquals(10, listOfGhost.get(1).getPos().getPosX());
+        assertEquals(7, listOfGhost.get(1).getPos().getPosY());
+        assertEquals(10, listOfGhost.get(2).getPos().getPosX());
+        assertEquals(7, listOfGhost.get(2).getPos().getPosY());
+        for (int i = 0; i < game.getPellets().getPellet().length; i++) {
+            assertNotEquals(32, game.getPellets().getPellet()[i][1]);
+            assertNotEquals(32, game.getPellets().getPellet()[i][0]);
+        }
+        for (int i = 0; i < game.getPower().getPowerUps().length; i++) {
+            assertNotEquals(32, game.getPower().getPowerUps()[i][1]);
+            assertNotEquals(32, game.getPower().getPowerUps()[i][0]);
+        }
+    }
+
+    @Test
+    void livesTest() {
+        assertEquals(3, game.getLives());
+        Ghost blinky = listOfGhost.get(0);
+        blinky.setPos(10,10);
+        blinky.setWeakGhost(true);
+        game.checkEndGame();
+        assertEquals(10, blinky.getPos().getPosX());
+        assertEquals(7, blinky.getPos().getPosY());
+        blinky.setPos(10,10);
+        game.checkEndGame();
+        assertEquals(2, game.getLives());
+        blinky.setPos(10,10);
+        game.eatWeakGhost();
+        assertEquals(1, game.getLives());
+        for (int i = 0; i < game.getPellets().getPellet().length; i++) {
+            game.getPellets().getPellet()[i][1] = 32;
+            game.getPellets().getPellet()[i][0] = 32;
+        }
+        assertTrue(game.noMorePellets());
+        game.checkEndGame();
+        assertEquals(10, blinky.getPos().getPosX());
+        assertEquals(7, blinky.getPos().getPosY());
+        blinky.setPos(10,10);
+        game.checkEndGame();
+        assertEquals(0, game.getLives());
+        game.tick();
         assertTrue(game.isEnded());
-
-
     }
 
     @Test
@@ -213,7 +260,7 @@ class PacManGameTest {
         assertFalse(listOfGhost.get(0).getWeak());
         listOfGhost.get(0).setPos(2,1);
         game.eatWeakGhost();
-        assertTrue(game.isEnded());
+        assertEquals(2, game.getLives());
     }
 
     @Test

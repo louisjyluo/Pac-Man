@@ -59,7 +59,10 @@ public class PelletTest {
         y = pellets.getPellet()[5][0];
         assertEquals(32, x);
         assertEquals(32, y);
-
     }
 
+    @Test
+    void getterTest() {
+        assertEquals(106,pellets.getBackUp().length);
+    }
 }

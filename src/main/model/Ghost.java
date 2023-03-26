@@ -13,8 +13,7 @@ public class Ghost implements Writable {
     private Walls walls;
     private Random num;
     private Boolean weak;
-    public static final int SIZE_X = 30;
-    public static final int SIZE_Y = 30;
+    private double randomNum;
 
     //REQUIRES: starting position must be inside the ghost box.
     //MODIFIES: this
@@ -31,11 +30,12 @@ public class Ghost implements Writable {
     //MODIFIES: this
     //EFFECTS: move the ghost randomly based on the randomly generated number
     public void move() {
-        if (num.nextDouble() < 0.25) {
+        randomNum = num.nextDouble();
+        if (randomNum < 0.25) {
             moveDown();
-        } else if (num.nextDouble() >= 0.25 && num.nextDouble() < 0.5) {
+        } else if (randomNum < 0.5) {
             moveUp();
-        } else if (num.nextDouble() >= 0.5 && num.nextDouble() < 0.75) {
+        } else if (randomNum < 0.75) {
             moveRight();
         } else {
             moveLeft();
@@ -172,6 +172,10 @@ public class Ghost implements Writable {
 
     public void setWeakGhost(boolean weak) {
         this.weak =  weak;
+    }
+
+    public double getRandomNum() {
+        return randomNum;
     }
 
 }

@@ -19,6 +19,7 @@ public class PowerUpsTest {
     @Test
     void getterTest() {
         assertEquals(2, pow.getPowerUps()[0][1]);
+        assertEquals(4, pow.getBackUp().length);
     }
 
     @Test
@@ -44,9 +45,6 @@ public class PowerUpsTest {
         assertEquals(32, posX);
         assertEquals(32, posY);
 
-
     }
-
-
 
 }

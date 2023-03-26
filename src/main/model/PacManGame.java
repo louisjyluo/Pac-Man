@@ -2,10 +2,7 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.JsonWriter;
 import persistence.Writable;
-
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 //The class that puts everything together and creates the game itself
@@ -27,6 +24,7 @@ public class PacManGame implements Writable {
     private int powerUpDurationTimer = 0;
     private int pacManTimer = 0;
     private int ghostTimer = 0;
+    private int lives = 3;
     private Ghost thatGhost;
 
     //REQUIRES: tickPerSec > 0;
@@ -58,6 +56,29 @@ public class PacManGame implements Writable {
         }
         eatPowerUpToWeakenGhost();
         checkEndGame();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: resets the entire board
+    public void resetGame() {
+        pacMan.setBody(10,10);
+        pacMan.setLastBody(10,10);
+        pacMan.setDirection(Direction.UP);
+        for (Ghost ghost : listOfGhost) {
+            ghost.setWeakGhost(false);
+            ghost.setLastBody(10,7);
+            ghost.setPos(10,7);
+        }
+
+        for (int i = 0; i < pellets.getPellet().length; i++) {
+            pellets.getPellet()[i][0] = pellets.getBackUp()[i][0];
+            pellets.getPellet()[i][1] = pellets.getBackUp()[i][1];
+        }
+
+        for (int i = 0; i < power.getPowerUps().length; i++) {
+            power.getPowerUps()[i][0] = power.getBackUp()[i][0];
+            power.getPowerUps()[i][1] = power.getBackUp()[i][1];
+        }
     }
 
     //MODIFIES: this
@@ -106,14 +127,20 @@ public class PacManGame implements Writable {
     //MODIFIES: this
     //EFFECTS: check when the game ends and handles weak ghost
     public void checkEndGame() {
-        if (isWeakGhost()) {
-            eatWeakGhost();
+        if (lives > 0) {
+            if (isWeakGhost()) {
+                eatWeakGhost();
 
-        } else if (hasCollidedWithGhost()) {
-            ended = true;
-        }
+            } else if (hasCollidedWithGhost() && thatGhost == null
+                    || hasCollidedWithGhost() && !thatGhost.getWeak()) {
+                lives--;
+                resetGame();
+            }
 
-        if (noMorePellets()) {
+            if (noMorePellets()) {
+                resetGame();
+            }
+        } else {
             ended = true;
         }
     }
@@ -184,7 +211,7 @@ public class PacManGame implements Writable {
                 Ghost thisGhost = listOfGhost.get(whichGhost);
                 thatGhost = thisGhost;
                 if (!thisGhost.getWeak()) {
-                    ended = true;
+                    checkEndGame();
                 }
                 resetGhost();
             }
@@ -306,6 +333,10 @@ public class PacManGame implements Writable {
 
     public int getWidth() {
         return width;
+    }
+
+    public int getLives() {
+        return lives;
     }
 
 }
