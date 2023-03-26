@@ -189,6 +189,27 @@ class PacManGameTest {
         assertEquals(1,game.getLives());
         assertEquals(10, pacMan.getPos().getPosX());
         assertEquals(10, pacMan.getPos().getPosY());
+        pacMan.setBody(2,1);
+        listOfGhost.get(0).setPos(2,1);
+        listOfGhost.get(0).setWeakGhost(true);
+        game.checkEndGame();
+        assertEquals(1,game.getLives());
+        assertEquals(2, pacMan.getPos().getPosX());
+        assertEquals(1, pacMan.getPos().getPosY());
+        assertEquals(10, listOfGhost.get(0).getPos().getPosX());
+        assertEquals(7, listOfGhost.get(0).getPos().getPosY());
+        listOfGhost.get(0).setWeakGhost(true);
+        game.checkEndGame();
+        assertTrue(listOfGhost.get(0).getWeak());
+        pacMan.setBody(2,1);
+        listOfGhost.get(0).setPos(5,5);
+        listOfGhost.get(0).setWeakGhost(true);
+        game.checkEndGame();
+        assertEquals(1,game.getLives());
+        assertEquals(2, pacMan.getPos().getPosX());
+        assertEquals(1, pacMan.getPos().getPosY());
+        assertEquals(5, listOfGhost.get(0).getPos().getPosX());
+        assertEquals(5, listOfGhost.get(0).getPos().getPosY());
     }
 
     @Test

@@ -24,24 +24,88 @@ public class GhostTest {
 
     @Test
     void randomMoveTest() {
+        blinky.move();
         if (blinky.getRandomNum() < 0.25) {
             blinky.moveDown();
             assertEquals(10,blinky.getPos().getPosX());
             assertEquals(8,blinky.getPos().getPosY());
         }
-
         if (blinky.getRandomNum() >= 0.25 && blinky.getRandomNum() < 0.5) {
             blinky.moveUp();
             assertEquals(10,blinky.getPos().getPosX());
             assertEquals(7,blinky.getPos().getPosY());
         }
-
         if (blinky.getRandomNum() >= 0.5 && blinky.getRandomNum() < 0.75) {
             blinky.moveRight();
             assertEquals(11,blinky.getPos().getPosX());
             assertEquals(7,blinky.getPos().getPosY());
         }
+        if (blinky.getRandomNum() >= 0.75) {
+            blinky.moveLeft();
+            assertEquals(9,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
 
+        blinky.move();
+        if (blinky.getRandomNum() < 0.25) {
+            blinky.moveDown();
+            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(8,blinky.getPos().getPosY());
+        }
+        if (blinky.getRandomNum() >= 0.25 && blinky.getRandomNum() < 0.5) {
+            blinky.moveUp();
+            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+        if (blinky.getRandomNum() >= 0.5 && blinky.getRandomNum() < 0.75) {
+            blinky.moveRight();
+            assertEquals(11,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+        if (blinky.getRandomNum() >= 0.75) {
+            blinky.moveLeft();
+            assertEquals(9,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+
+        blinky.move();
+        if (blinky.getRandomNum() < 0.25) {
+            blinky.moveDown();
+            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(8,blinky.getPos().getPosY());
+        }
+        if (blinky.getRandomNum() >= 0.25 && blinky.getRandomNum() < 0.5) {
+            blinky.moveUp();
+            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+        if (blinky.getRandomNum() >= 0.5 && blinky.getRandomNum() < 0.75) {
+            blinky.moveRight();
+            assertEquals(11,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+        if (blinky.getRandomNum() >= 0.75) {
+            blinky.moveLeft();
+            assertEquals(9,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+
+        blinky.move();
+        if (blinky.getRandomNum() < 0.25) {
+            blinky.moveDown();
+            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(8,blinky.getPos().getPosY());
+        }
+        if (blinky.getRandomNum() >= 0.25 && blinky.getRandomNum() < 0.5) {
+            blinky.moveUp();
+            assertEquals(10,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
+        if (blinky.getRandomNum() >= 0.5 && blinky.getRandomNum() < 0.75) {
+            blinky.moveRight();
+            assertEquals(11,blinky.getPos().getPosX());
+            assertEquals(7,blinky.getPos().getPosY());
+        }
         if (blinky.getRandomNum() >= 0.75) {
             blinky.moveLeft();
             assertEquals(9,blinky.getPos().getPosX());

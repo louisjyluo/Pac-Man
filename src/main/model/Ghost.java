@@ -162,10 +162,6 @@ public class Ghost implements Writable {
         this.lastBody = new Position(x,y);
     }
 
-    public Random getNum() {
-        return num;
-    }
-
     public boolean getWeak() {
         return weak;
     }
