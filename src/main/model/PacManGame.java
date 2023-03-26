@@ -132,7 +132,7 @@ public class PacManGame implements Writable {
         if (lives > 0) {
             if (isWeakGhost()) {
                 eatWeakGhost();
-            } else if (hasCollidedWithGhost() && !listOfGhost.get(whichGhost).getWeak()) {
+            } else if (hitGhost()) {
                 resetGame();
                 lives--;
             }
@@ -143,6 +143,12 @@ public class PacManGame implements Writable {
         } else {
             ended = true;
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: checks if PacMan collides with a specific ghost
+    public boolean hitGhost() {
+        return hasCollidedWithGhost() && !listOfGhost.get(whichGhost).getWeak();
     }
 
     //MODIFIES: this

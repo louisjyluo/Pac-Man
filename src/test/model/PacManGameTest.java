@@ -222,6 +222,25 @@ class PacManGameTest {
     }
 
     @Test
+    void hitGhostTest() {
+        pacMan.setBody(2,1);
+        listOfGhost.get(0).setPos(2,1);
+        assertTrue(game.hitGhost());
+        pacMan.setBody(2,1);
+        listOfGhost.get(0).setPos(2,1);
+        listOfGhost.get(0).setWeakGhost(true);
+        assertFalse(game.hitGhost());
+        pacMan.setBody(2,1);
+        listOfGhost.get(0).setPos(5,5);
+        listOfGhost.get(0).setWeakGhost(false);
+        assertFalse(game.hitGhost());
+        pacMan.setBody(2,1);
+        listOfGhost.get(0).setPos(5,5);
+        listOfGhost.get(0).setWeakGhost(true);
+        assertFalse(game.hitGhost());
+    }
+
+    @Test
     void isPowerUpTest() {
         pacMan.setBody(2,1);
         assertTrue(game.isPowerUp());
