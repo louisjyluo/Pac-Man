@@ -128,11 +128,11 @@ public class PacManGame implements Writable {
     //MODIFIES: this
     //EFFECTS: check when the game ends and handles weak ghost
     public void checkEndGame() {
+        hasCollidedWithGhost();
         if (lives > 0) {
             if (isWeakGhost()) {
                 eatWeakGhost();
-            } else if (hasCollidedWithGhost() && thatGhost == null
-                    || hasCollidedWithGhost() && !thatGhost.getWeak()) {
+            } else if (hasCollidedWithGhost() && !listOfGhost.get(whichGhost).getWeak()) {
                 resetGame();
                 lives--;
             }
@@ -338,6 +338,10 @@ public class PacManGame implements Writable {
 
     public int getLives() {
         return lives;
+    }
+
+    public void setPacManTimer(int timer) {
+        this.pacManTimer = timer;
     }
 
 }

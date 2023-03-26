@@ -94,6 +94,15 @@ class PacManGameTest {
     }
 
     @Test
+    void handlePacManMovementTest() {
+        pacMan.setBody(10,10);
+        pacMan.setDirection(Direction.LEFT);
+        game.setPacManTimer(8);
+        game.tick();
+        assertEquals(9, pacMan.getPos().getPosX());
+    }
+
+    @Test
     void handleGhostMovementTest() {
         game.setGhostTimer(10);
         for(Ghost ghost : listOfGhost) {
@@ -161,12 +170,25 @@ class PacManGameTest {
     void EndStateTest() {
         pacMan.setBody(2,1);
         listOfGhost.get(0).setPos(2,1);
+        game.checkEndGame();
+        assertEquals(2,game.getLives());
+        assertEquals(10, pacMan.getPos().getPosX());
+        assertEquals(10, pacMan.getPos().getPosY());
+        pacMan.setBody(2,1);
+        listOfGhost.get(0).setPos(2,1);
         listOfGhost.get(0).setWeakGhost(true);
-        assertTrue(game.isWeakGhost());
         game.eatWeakGhost();
         assertEquals(10, listOfGhost.get(0).getPos().getPosX());
         assertEquals(7, listOfGhost.get(0).getPos().getPosY());
-
+        game.setPowerUpDurationTimer(401);
+        game.tick();
+        pacMan.setBody(2,1);
+        listOfGhost.get(0).setPos(2,1);
+        listOfGhost.get(0).setWeakGhost(false);
+        game.checkEndGame();
+        assertEquals(1,game.getLives());
+        assertEquals(10, pacMan.getPos().getPosX());
+        assertEquals(10, pacMan.getPos().getPosY());
     }
 
     @Test

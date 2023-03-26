@@ -59,6 +59,14 @@ public class PelletTest {
         y = pellets.getPellet()[5][0];
         assertEquals(32, x);
         assertEquals(32, y);
+        for (int i = 0;  i < pellets.getPellet().length; i++) {
+            pellets.getPellet()[i][1] = 32;
+            pellets.getPellet()[i][0] = 32;
+        }
+        for (int i = 0;  i < pellets.getPellet().length; i++) {
+            assertEquals(32, pellets.getPellet()[i][1]);
+            assertEquals(32, pellets.getPellet()[i][0]);
+        }
     }
 
     @Test
