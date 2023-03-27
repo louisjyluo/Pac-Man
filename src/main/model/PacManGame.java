@@ -61,16 +61,7 @@ public class PacManGame implements Writable {
     //MODIFIES: this
     //EFFECTS: resets the entire board
     public void resetGame() {
-        pacMan.setBody(10,10);
-        pacMan.setLastBody(10,10);
-        pacMan.setDirection(Direction.UP);
-        powerUpDurationTimer = 0;
-        for (Ghost ghost : listOfGhost) {
-            ghost.setWeakGhost(false);
-            ghost.setLastBody(10,7);
-            ghost.setPos(10,7);
-        }
-
+        resetDeath();
         for (int i = 0; i < pellets.getPellet().length; i++) {
             pellets.getPellet()[i][0] = pellets.getBackUp()[i][0];
             pellets.getPellet()[i][1] = pellets.getBackUp()[i][1];
@@ -79,6 +70,20 @@ public class PacManGame implements Writable {
         for (int i = 0; i < power.getPowerUps().length; i++) {
             power.getPowerUps()[i][0] = power.getBackUp()[i][0];
             power.getPowerUps()[i][1] = power.getBackUp()[i][1];
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: resets pacMan and ghost after death
+    public void resetDeath() {
+        pacMan.setBody(10,10);
+        pacMan.setLastBody(10,10);
+        pacMan.setDirection(Direction.UP);
+        powerUpDurationTimer = 0;
+        for (Ghost ghost : listOfGhost) {
+            ghost.setWeakGhost(false);
+            ghost.setLastBody(10,7);
+            ghost.setPos(10,7);
         }
     }
 
@@ -133,7 +138,7 @@ public class PacManGame implements Writable {
             if (isWeakGhost()) {
                 eatWeakGhost();
             } else if (hitGhost()) {
-                resetGame();
+                resetDeath();
                 lives--;
             }
 
@@ -217,7 +222,7 @@ public class PacManGame implements Writable {
                 Ghost thisGhost = listOfGhost.get(whichGhost);
                 thatGhost = thisGhost;
                 if (!thisGhost.getWeak()) {
-                    resetGame();
+                    resetDeath();
                     lives--;
                 }
                 resetGhost();
@@ -348,6 +353,10 @@ public class PacManGame implements Writable {
 
     public void setPacManTimer(int timer) {
         this.pacManTimer = timer;
+    }
+
+    public int getPacManTimer() {
+        return pacManTimer;
     }
 
 }

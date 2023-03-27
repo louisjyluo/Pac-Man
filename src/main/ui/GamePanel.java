@@ -211,18 +211,18 @@ public class GamePanel extends JPanel {
     private void loadImages() {
         String sep = System.getProperty("file.separator");
         String sys = System.getProperty("user.dir");
-        blinkyImage = new ImageIcon(sys + sep + "Images" + sep + "blinky.png");
-        pinkyImage = new ImageIcon(sys + sep + "Images" + sep + "pinky.png");
-        inkyImage = new ImageIcon(sys + sep + "Images" + sep + "inky.png");
-        clydeImage = new ImageIcon(sys + sep + "Images" + sep + "clyde.png");
-        pacManUpImage = new ImageIcon(sys + sep + "Images" + sep + "pacmanup.png");
-        pacManDownImage = new ImageIcon(sys + sep + "Images" + sep + "pacmandown.png");
-        pacManLeftImage = new ImageIcon(sys + sep + "Images" + sep + "pacmanleft.png");
-        pacManRightImage = new ImageIcon(sys + sep + "Images" + sep + "pacmanright.png");
-        pelletImage = new ImageIcon(sys + sep + "Images" + sep + "pacmanpellet.png");
-        powerUpImage = new ImageIcon(sys + sep + "Images" + sep + "pacmanpowerup.png");
-        weakGhostImage = new ImageIcon(sys + sep + "Images" + sep + "weakghost.png");
-        wallImage = new ImageIcon(sys + sep + "Images" + sep + "pacmanwall.png");
+        blinkyImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "blinky.png");
+        pinkyImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pinky.png");
+        inkyImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "inky.png");
+        clydeImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "clyde.png");
+        pacManUpImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanup.png");
+        pacManDownImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmandown.png");
+        pacManLeftImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanleft.png");
+        pacManRightImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanright.png");
+        pelletImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanpellet.png");
+        powerUpImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanpowerup.png");
+        weakGhostImage = new ImageIcon(sys + sep + "data" +  sep + "Images" + sep + "weakghost.png");
+        wallImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanwall.png");
     }
 
     public void setGame(PacManGame game) {

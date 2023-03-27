@@ -31,10 +31,10 @@ public class ScorePanel extends JPanel {
         setBackground(new Color(220, 150, 0));
         Font font = new Font("comic sans", BOLD, 15);
         score = new JLabel(SCORE + game.getPellets().getScore());
-        score.setPreferredSize(new Dimension(LBL_WIDTH, LBL_HEIGHT));
+        score.setPreferredSize(new Dimension(120, LBL_HEIGHT));
         score.setFont(font);
         powerUp = new JLabel(POWERUP + game.getPowerUpDurationTimer() + TOTALTIME);
-        powerUp.setPreferredSize(new Dimension(300, LBL_HEIGHT));
+        powerUp.setPreferredSize(new Dimension(230, LBL_HEIGHT));
         powerUp.setFont(font);
         ghosts = new JLabel(GHOSTS + game.getListOfGhost().size());
         ghosts.setPreferredSize(new Dimension(LBL_WIDTH, LBL_HEIGHT));
