@@ -354,9 +354,4 @@ public class PacManGame implements Writable {
     public void setPacManTimer(int timer) {
         this.pacManTimer = timer;
     }
-
-    public int getPacManTimer() {
-        return pacManTimer;
-    }
-
 }
