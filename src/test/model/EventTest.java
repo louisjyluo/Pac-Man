@@ -14,6 +14,7 @@ public class EventTest {
     private Event same;
     private Event different;
     private Event empty;
+    private Ghost blinky;
     private Date d;
 
     @BeforeEach
@@ -22,6 +23,7 @@ public class EventTest {
         d = Calendar.getInstance().getTime();
         same = new Event("same");
         different = new Event("different");
+        blinky = new Ghost();
     }
 
     @Test
@@ -39,8 +41,9 @@ public class EventTest {
     @Test
     void EqualsTest() {
         assertFalse(same.equals(different));
-        assertFalse(same.getClass() != different.getClass());
+        assertFalse(different.equals(blinky));
         assertFalse(same.equals(empty));
+
     }
 
     @Test
