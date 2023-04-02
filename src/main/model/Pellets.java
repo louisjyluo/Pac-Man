@@ -4,8 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.ArrayList;
-
 //The map of all the pellets in the game
 public class Pellets implements Writable {
     private int score;

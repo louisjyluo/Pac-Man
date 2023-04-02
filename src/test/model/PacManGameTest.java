@@ -167,6 +167,16 @@ class PacManGameTest {
     }
 
     @Test
+    void removeGhostTest() {
+        game.removeGhosts();
+        assertEquals(4, game.getListOfGhost().size());
+        game.addGhosts();
+        game.addGhosts();
+        game.removeGhosts();
+        assertEquals(5, game.getListOfGhost().size());
+    }
+
+    @Test
     void EndStateTest() {
         pacMan.setBody(2,1);
         listOfGhost.get(0).setPos(2,1);

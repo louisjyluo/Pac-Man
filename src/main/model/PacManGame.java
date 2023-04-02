@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 //The class that puts everything together and creates the game itself
 public class PacManGame implements Writable {
@@ -264,8 +265,23 @@ public class PacManGame implements Writable {
     // MODIFIES: this
     // EFFECTS: adds a new ghost into the game
     public void addGhosts() {
+        String des = "Added 1 ghost to the map";
+        Event event = new Event(des);
         Ghost ghost = new Ghost();
         listOfGhost.add(ghost);
+        EventLog.getInstance().logEvent(event);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes the most recent ghost added, can't remove the original ghosts
+    public void removeGhosts() {
+        if (listOfGhost.size() > 4) {
+            String des = "Removed 1 ghost to the map";
+            Event event = new Event(des);
+            int index = listOfGhost.size() - 1;
+            listOfGhost.remove(index);
+            EventLog.getInstance().logEvent(event);
+        }
     }
 
     //MODIFIES: this
@@ -354,4 +370,5 @@ public class PacManGame implements Writable {
     public void setPacManTimer(int timer) {
         this.pacManTimer = timer;
     }
+
 }

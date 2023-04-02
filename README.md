@@ -57,5 +57,15 @@ and below the data folder.
 
 - You can reload the state of my application by either press L or click the Load button.
 
+## Phase 4: Task 2
 
- 
+User adds ghost to game*
+
+EventLog logs "added to the map"
+
+User removes ghost to game*
+
+EventLog logs "removed from the map"
+
+To get the log to print in the end, press E to save and exit with the log, another way to exit is by pressing f4,
+which will only exit and print the log without saving.

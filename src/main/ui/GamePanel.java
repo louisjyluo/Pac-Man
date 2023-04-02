@@ -11,7 +11,6 @@ import static java.awt.Font.BOLD;
 // Class that will create the panel for the game itself with code cited from SpaceInvadersBase
 public class GamePanel extends JPanel {
     private static final String OVER = "Game Over!";
-    private static final String BEGIN = "Press Space to Begin!";
     private PacManGame game;
     private ImageIcon blinkyImage;
     private ImageIcon pinkyImage;
@@ -25,6 +24,7 @@ public class GamePanel extends JPanel {
     private ImageIcon pacManLeftImage;
     private ImageIcon pacManRightImage;
     private ImageIcon powerUpImage;
+    private ImageIcon ghostDoor;
 
 
     // MODIFIES: this
@@ -79,6 +79,7 @@ public class GamePanel extends JPanel {
         drawInky(g);
         drawPellet(g);
         drawPowerUp(g);
+        drawGhostDoor(g);
         drawExtraGhosts(g);
     }
 
@@ -199,6 +200,10 @@ public class GamePanel extends JPanel {
         }
     }
 
+    private void drawGhostDoor(Graphics g) {
+        g.setColor(new Color(180,0,150));
+        g.fillRect(10 * 30 + 1,6 * 30 + 20,30,5);
+    }
 
     //MODIFIES: this
     //EFFECTS: the actual method that puts the input on the terminal screen.
@@ -223,6 +228,7 @@ public class GamePanel extends JPanel {
         powerUpImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanpowerup.png");
         weakGhostImage = new ImageIcon(sys + sep + "data" +  sep + "Images" + sep + "weakghost.png");
         wallImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanwall.png");
+        ghostDoor = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "ghostdoor.png");
     }
 
     public void setGame(PacManGame game) {

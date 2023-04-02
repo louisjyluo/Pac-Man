@@ -165,6 +165,10 @@ public class TerminalGame {
 
         text = screen.newTextGraphics();
         text.setForegroundColor(TextColor.ANSI.WHITE);
+        text.putString(24, 0, "Lives: " + game.getLives());
+
+        text = screen.newTextGraphics();
+        text.setForegroundColor(TextColor.ANSI.WHITE);
         text.putString(20, 0, "F1: save - F2:load - F3: add Ghost");
     }
 
@@ -172,8 +176,16 @@ public class TerminalGame {
     //EFFECTS: draws PacMan on the map and updates everytime he moves
     private void drawPacMan() {
         PacMan pacMan = game.getPacMan();
+        if (pacMan.getDir() == Direction.RIGHT) {
+            drawPosition(pacMan.getPos(), TextColor.ANSI.WHITE, '<');
+        } else if (pacMan.getDir() == Direction.LEFT) {
+            drawPosition(pacMan.getPos(), TextColor.ANSI.WHITE, '>');
+        } else if (pacMan.getDir() == Direction.UP) {
+            drawPosition(pacMan.getPos(), TextColor.ANSI.WHITE, 'v');
+        } else if (pacMan.getDir() == Direction.DOWN) {
+            drawPosition(pacMan.getPos(), TextColor.ANSI.WHITE, '^');
+        }
 
-        drawPosition(pacMan.getPos(), TextColor.ANSI.WHITE, 'C');
 
     }
 

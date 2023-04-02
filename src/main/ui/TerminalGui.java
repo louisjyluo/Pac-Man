@@ -2,6 +2,8 @@ package ui;
 
 
 import model.Direction;
+import model.Event;
+import model.EventLog;
 import model.PacManGame;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -83,10 +85,11 @@ public class TerminalGui extends JFrame {
     // EFFECTS: handles all the different buttons.
     public void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1,3));
+        buttonPanel.setLayout(new GridLayout(1,4));
         buttonPanel.add(saveButton());
         buttonPanel.add(loadButton());
         buttonPanel.add(addGhostButton());
+        buttonPanel.add(removeGhostButton());
         add(buttonPanel, BorderLayout.NORTH);
     }
 
@@ -144,6 +147,19 @@ public class TerminalGui extends JFrame {
         return ghostButton;
     }
 
+    // MODIFIES: this
+    // EFFECTS: a button that will add a ghost to the game
+    public JButton removeGhostButton() {
+        JButton ghostButton = new JButton("Remove Ghosts");
+        ghostButton.setActionCommand("Remove Ghosts");
+        ghostButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.removeGhosts();
+            }
+        });
+        return ghostButton;
+    }
+
     //Class that handles all the key inputs
     private class KeyHandler extends KeyAdapter {
         // MODIFIES: this
@@ -163,6 +179,19 @@ public class TerminalGui extends JFrame {
             loadPacManGame();
         } else if (keyCode == KeyEvent.VK_A) {
             game.addGhosts();
+        } else if (keyCode == KeyEvent.VK_R) {
+            game.removeGhosts();
+        } else if (keyCode == KeyEvent.VK_E) {
+            for (Event e : EventLog.getInstance()) {
+                System.out.println(e.getDescription());
+            }
+            savePacManGame();
+            System.exit(0);
+        } else if (keyCode == KeyEvent.VK_F4) {
+            for (Event e : EventLog.getInstance()) {
+                System.out.println(e.getDescription());
+            }
+            System.exit(0);
         } else {
             handlePacManMovement(keyCode);
         }
