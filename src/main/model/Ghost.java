@@ -169,6 +169,10 @@ public class Ghost implements Writable {
         this.weak =  weak;
     }
 
+    public void setRandomNum(double randomNum) {
+        this.randomNum = randomNum;
+    }
+
     public double getRandomNum() {
         return randomNum;
     }
