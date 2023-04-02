@@ -39,6 +39,7 @@ public class EventTest {
     @Test
     void EqualsTest() {
         assertFalse(same.equals(different));
+        assertFalse(!same.getClass().equals(different.getClass()));
         assertFalse(same.equals(empty));
     }
 
