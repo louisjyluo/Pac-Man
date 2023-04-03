@@ -80,6 +80,7 @@ public class PacManGame implements Writable {
         pacMan.setBody(10,10);
         pacMan.setLastBody(10,10);
         pacMan.setDirection(Direction.UP);
+        pacMan.setLastDir(Direction.UP);
         powerUpDurationTimer = 0;
         for (Ghost ghost : listOfGhost) {
             ghost.setWeakGhost(false);

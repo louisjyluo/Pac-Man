@@ -22,6 +22,8 @@ public class PacManTest {
         assertEquals(10,pacMan.getLastBody().getPosY());
         pacMan.setDirection(Direction.RIGHT);
         assertEquals(Direction.RIGHT, pacMan.getDir());
+        pacMan.setLastDir(Direction.LEFT);
+        assertEquals(Direction.LEFT, pacMan.getLastDir());
     }
 
     @Test

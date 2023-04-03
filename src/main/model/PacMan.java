@@ -3,11 +3,14 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.security.DigestException;
+
 
 //Pacman class - represents PacMan, have move() method, wall collision, direction.
 public class PacMan implements Writable {
     private Position body;
     private Direction dir;
+    private Direction lastDir;
     private Position lastBody;
     private final Walls walls;
 
@@ -15,10 +18,11 @@ public class PacMan implements Writable {
     //MODIFIES: this
     //EFFECTS: Sets up PacMan's starting position
     public PacMan() {
-        this.body = new Position(10, 10);
-        this.dir = Direction.UP;
+        body = new Position(10, 10);
+        dir = Direction.UP;
         lastBody = new Position(10,10);
         walls = new Walls();
+        lastDir = Direction.UP;
     }
 
     //MODIFIES: this
@@ -26,12 +30,16 @@ public class PacMan implements Writable {
     public void move() {
         if (dir == Direction.RIGHT) {
             moveRight();
+            lastDir = Direction.RIGHT;
         } else if (dir == Direction.LEFT) {
             moveLeft();
+            lastDir = Direction.LEFT;
         } else if (dir == Direction.UP) {
             moveUp();
+            lastDir = Direction.UP;
         } else {
             moveDown();
+            lastDir = Direction.DOWN;
         }
     }
 
@@ -39,7 +47,7 @@ public class PacMan implements Writable {
     //EFFECTS: move right if possible.
     public void moveRight() {
         if (cantMoveRight()) {
-            body = new Position(body.getPosX(), body.getPosY());
+            dir = lastDir;
         } else {
             body = new Position(body.getPosX() + 1, body.getPosY());
             lastBody = new Position(body.getPosX() - 1, body.getPosY());
@@ -50,7 +58,7 @@ public class PacMan implements Writable {
     //EFFECTS: move left if possible.
     public void moveLeft() {
         if (cantMoveLeft()) {
-            body = new Position(body.getPosX(), body.getPosY());
+            dir = lastDir;
         } else {
             body = new Position(body.getPosX() - 1, body.getPosY());
             lastBody = new Position(body.getPosX() + 1, body.getPosY());
@@ -61,7 +69,7 @@ public class PacMan implements Writable {
     //EFFECTS: move up if possible.
     public void moveUp() {
         if (cantMoveUp()) {
-            body = new Position(body.getPosX(), body.getPosY());
+            dir = lastDir;
         } else {
             body = new Position(body.getPosX(), body.getPosY() - 1);
             lastBody = new Position(body.getPosX(), body.getPosY() + 1);
@@ -72,7 +80,7 @@ public class PacMan implements Writable {
     //EFFECTS: move down if possible.
     public void moveDown() {
         if (cantMoveDown()) {
-            body = new Position(body.getPosX(), body.getPosY());
+            dir = lastDir;
         } else {
             body = new Position(body.getPosX(), body.getPosY() + 1);
             lastBody = new Position(body.getPosX(), body.getPosY() - 1);
@@ -164,6 +172,16 @@ public class PacMan implements Writable {
     public void setLastBody(int x, int y) {
         this.lastBody = new Position(x,y);
     }
+
+    public void setLastDir(Direction dir) {
+        this.lastDir = dir;
+    }
+
+    public Direction getLastDir() {
+        return lastDir;
+    }
+
+
 
 
 
