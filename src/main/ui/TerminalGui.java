@@ -183,13 +183,13 @@ public class TerminalGui extends JFrame {
             game.removeGhosts();
         } else if (keyCode == KeyEvent.VK_E) {
             for (Event e : EventLog.getInstance()) {
-                System.out.println(e.getDescription());
+                System.out.println(e.toString());
             }
             savePacManGame();
             System.exit(0);
         } else if (keyCode == KeyEvent.VK_F4) {
             for (Event e : EventLog.getInstance()) {
-                System.out.println(e.getDescription());
+                System.out.println(e.toString());
             }
             System.exit(0);
         } else {

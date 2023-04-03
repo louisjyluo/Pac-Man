@@ -3,7 +3,6 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.awt.*;
 
 //Pacman class - represents PacMan, have move() method, wall collision, direction.
 public class PacMan implements Writable {
@@ -11,9 +10,6 @@ public class PacMan implements Writable {
     private Direction dir;
     private Position lastBody;
     private final Walls walls;
-    public static final Color COLOR = new Color(255, 255, 51);
-    public static final int SIZE_X = 30;
-    public static final int SIZE_Y = 30;
 
     //REQUIRES: starting position must be not a wall, inside the ghost box, and within the map.
     //MODIFIES: this

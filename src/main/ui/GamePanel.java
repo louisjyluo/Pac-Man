@@ -24,7 +24,6 @@ public class GamePanel extends JPanel {
     private ImageIcon pacManLeftImage;
     private ImageIcon pacManRightImage;
     private ImageIcon powerUpImage;
-    private ImageIcon ghostDoor;
 
 
     // MODIFIES: this
@@ -228,7 +227,6 @@ public class GamePanel extends JPanel {
         powerUpImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanpowerup.png");
         weakGhostImage = new ImageIcon(sys + sep + "data" +  sep + "Images" + sep + "weakghost.png");
         wallImage = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "pacmanwall.png");
-        ghostDoor = new ImageIcon(sys + sep + "data" + sep + "Images" + sep + "ghostdoor.png");
     }
 
     public void setGame(PacManGame game) {

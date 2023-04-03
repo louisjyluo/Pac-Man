@@ -263,9 +263,9 @@ public class PacManGame implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds a new ghost into the game
+    // EFFECTS: adds a new ghost into the game, and logs the event
     public void addGhosts() {
-        String des = "Added 1 ghost to the map";
+        String des = "Added 1 ghost";
         Event event = new Event(des);
         Ghost ghost = new Ghost();
         listOfGhost.add(ghost);
@@ -273,10 +273,10 @@ public class PacManGame implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: removes the most recent ghost added, can't remove the original ghosts
+    // EFFECTS: removes the most recent ghost added, can't remove the original ghosts, and logs the event
     public void removeGhosts() {
         if (listOfGhost.size() > 4) {
-            String des = "Removed 1 ghost to the map";
+            String des = "Removed 1 ghost";
             Event event = new Event(des);
             int index = listOfGhost.size() - 1;
             listOfGhost.remove(index);
