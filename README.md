@@ -68,7 +68,8 @@ User removes ghost to game*
 EventLog logs "removed from the map"
 
 To get the log to print in the end, press E to save and exit with the log, another way to exit is by pressing f4,
-which will only exit and print the log without saving.
+which will only exit and print the log without saving. Closing the window itself will not execute the print log function 
+and nothing will happen.
 
 ## Phase 4: Task 3
 
@@ -79,8 +80,9 @@ refactor certain parts of the code, I would create an intermediate class that
 creates the board of PacMan instead of doing all that within the PacManGame class. Another 
 possible refactor is creating a game board that is complied of walls, pellets, and powerUps classified by
 numbers 1, 2, and 3. The point is to make a faster functioning code that can make walls detection a lot faster. The 
-current code loops through every walls and pellets to see if PacMan can interact with it. For a smaller map, the 
+current code loops through every wall and pellet to see if PacMan can interact with it. For a smaller map, the 
 code would be viable, but as the maps increase in size. Each tick significantly increase the memory usage. A refactor 
 that can remove the loop through the implementation of an intermediate board class would reduce the
-lag and memory usage for this PacManGame model. 
+lag and memory usage for this PacManGame model. The Position class also could've had an override equal method, so instead
+of calling the X and Y positions of Position to compare the 2 Positions I can just have a method that checks for equals.
 
