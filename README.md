@@ -12,7 +12,7 @@ Who will use it?
 Since I am designing a video game, the audience will be 
 video game players.
 
-Why is this project of interest to you? 
+Why is this project of interest to you?
 
 I've always wanted to work on a personal video game that 
 has elements designed and implemented personally. Previously, 
