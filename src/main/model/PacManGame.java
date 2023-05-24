@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 //The class that puts everything together and creates the game itself
@@ -27,6 +28,7 @@ public class PacManGame implements Writable {
     private int ghostTimer = 0;
     private int lives = 3;
     private Ghost thatGhost;
+    private Random randomNum;
 
     //REQUIRES: tickPerSec > 0;
     //MODIFIES: this

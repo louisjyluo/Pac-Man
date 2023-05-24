@@ -39,7 +39,6 @@ public class Ghost implements Writable {
         } else {
             moveLeft();
         }
-
     }
 
     //MODIFIES: this
